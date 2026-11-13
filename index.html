@@ -2,678 +2,186 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FAF9F6">
     <title>Cianci's Menù</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Colori del sito: i valori veri stanno in style.css (variabili --teal-*, --amber-*, --slate-*, --rose-*)
+        const ramp = n => Object.fromEntries([50, 100, 200, 300, 400, 500, 600, 700, 800, 900]
+            .map(k => [k, `rgb(var(--${n}-${k}) / <alpha-value>)`]));
+        tailwind.config = {
+            theme: { extend: { colors: {
+                teal: ramp('teal'),
+                emerald: ramp('teal'),
+                amber: ramp('amber'),
+                slate: ramp('slate'),
+                rose: ramp('rose'),
+                white: 'rgb(var(--white) / <alpha-value>)'
+            } } }
+        };
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap');
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #FAF9F6;
-            color: #334155;
-        }
-        .card-soft {
-            border: 1.5px solid #E2E8F0;
-            box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
-            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-        }
-        .card-soft:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08);
-            border-color: #CBD5E1;
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- LOGIN SCREEN (PULITO E SENZA SUGGERIMENTI SU NOMI E PASSWORD) -->
-    <div id="loginScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/35 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-3xl card-soft max-w-md w-full overflow-hidden p-6 sm:p-8 space-y-6">
+    <!-- LOGIN -->
+    <div id="loginScreen" class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center bg-slate-50 p-6">
+        <div class="w-full max-w-sm space-y-8">
             <div class="text-center space-y-3">
-                <div class="w-full h-40 bg-amber-50 rounded-2xl border border-amber-200/80 flex items-center justify-center p-3 relative overflow-hidden">
-                    <svg viewBox="0 0 320 180" class="w-full h-full">
-                        <rect x="0" y="0" width="320" height="180" fill="#FEFCE8" rx="12"/>
-                        <path d="M0 130 Q 160 120 320 130 L 320 180 L 0 180 Z" fill="#DCFCE7"/>
-                        <!-- Papà -->
-                        <g transform="translate(30, 45)">
-                            <ellipse cx="25" cy="50" rx="14" ry="16" fill="#FDBA74"/>
-                            <path d="M15 52 Q 25 68 35 52 Q 30 60 25 60 Q 20 60 15 52 Z" fill="#64748B"/>
-                            <path d="M12 42 Q 25 32 38 42 Z" fill="#475569"/>
-                            <path d="M10 66 Q 25 60 40 66 L 45 110 L 5 110 Z" fill="#14B8A6"/>
-                            <path d="M21 55 Q 25 60 29 55" stroke="#334155" stroke-width="2" fill="none" stroke-linecap="round"/>
-                        </g>
-                        <!-- Sara -->
-                        <g transform="translate(95, 40)">
-                            <ellipse cx="25" cy="50" rx="14" ry="16" fill="#FDBA74"/>
-                            <path d="M10 38 Q 25 25 40 38 L 42 75 L 38 75 L 35 45 L 15 45 L 12 75 L 8 75 Z" fill="#78350F"/>
-                            <path d="M10 66 Q 25 60 40 66 L 46 115 L 4 115 Z" fill="#F472B6"/>
-                            <path d="M21 54 Q 25 58 29 54" stroke="#334155" stroke-width="2" fill="none" stroke-linecap="round"/>
-                        </g>
-                        <!-- Elena -->
-                        <g transform="translate(165, 50)">
-                            <ellipse cx="22" cy="45" rx="12" ry="14" fill="#FDBA74"/>
-                            <path d="M9 35 Q 22 24 35 35 L 37 70 L 7 70 Z" fill="#78350F"/>
-                            <path d="M8 59 Q 22 54 36 59 L 41 105 L 3 105 Z" fill="#60A5FA"/>
-                            <path d="M18 48 Q 22 52 26 48" stroke="#334155" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                        </g>
-                        <!-- Anna -->
-                        <g transform="translate(225, 55)">
-                            <ellipse cx="20" cy="40" rx="11" ry="13" fill="#FDBA74"/>
-                            <path d="M8 30 Q 20 18 32 30 L 34 65 L 6 65 Z" fill="#FACC15"/>
-                            <path d="M7 53 Q 20 48 33 53 L 38 100 L 2 100 Z" fill="#A78BFA"/>
-                            <path d="M16 43 Q 20 47 24 43" stroke="#334155" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-                        </g>
-                        <!-- Pentola -->
-                        <g transform="translate(130, 110)">
-                            <ellipse cx="30" cy="25" rx="20" ry="8" fill="#CBD5E1"/>
-                            <path d="M10 25 L 15 50 Q 30 58 45 50 L 50 25 Z" fill="#64748B"/>
-                            <path d="M25 15 Q 30 5 35 15" stroke="#94A3B8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        </g>
-                    </svg>
+                <div class="mx-auto w-20 h-20 rounded-full bg-teal-500 text-white flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-bowl-food text-3xl" aria-hidden="true"></i>
                 </div>
-                <div>
-                    <h1 class="text-2xl font-bold text-slate-800 tracking-tight">Cianci's Menù 🍲</h1>
-                    <p class="text-xs font-semibold text-teal-600">La cucina di casa, semplice e serena.</p>
-                </div>
+                <h1 class="text-3xl font-bold text-slate-800 tracking-tight">Cianci's Menù</h1>
+                <p class="text-sm font-semibold text-slate-500">La cucina di casa, semplice e serena.</p>
             </div>
 
-            <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Utente</label>
-                    <input type="text" id="usernameInput" required autocomplete="off" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none text-sm font-semibold transition">
+            <form id="loginForm" class="space-y-5">
+                <div class="space-y-1.5">
+                    <label for="usernameInput" class="block text-xs font-bold text-slate-600">Utente</label>
+                    <div class="relative">
+                        <i class="fa-regular fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none" aria-hidden="true"></i>
+                        <input type="text" id="usernameInput" required autocomplete="username" placeholder="Es. Nicola"
+                            class="w-full py-3 pl-11 pr-4 rounded-xl bg-white border-[1.5px] border-slate-300 text-sm font-semibold text-slate-800 placeholder:text-slate-400 outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition">
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Password</label>
-                    <input type="password" id="passwordInput" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none text-sm font-semibold transition">
+
+                <div class="space-y-1.5">
+                    <label for="passwordInput" class="block text-xs font-bold text-slate-600">Password</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm pointer-events-none" aria-hidden="true"></i>
+                        <input type="password" id="passwordInput" required autocomplete="current-password" placeholder="La tua password"
+                            class="w-full py-3 pl-11 pr-12 rounded-xl bg-white border-[1.5px] border-slate-300 text-sm font-semibold text-slate-800 placeholder:text-slate-400 outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition">
+                        <button type="button" data-action="toggle-password" aria-label="Mostra password" aria-pressed="false"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-lg flex items-center justify-center text-slate-500 hover:text-teal-700 hover:bg-slate-100 transition">
+                            <i class="fa-regular fa-eye" aria-hidden="true"></i>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Data di Riferimento</label>
-                    <input type="date" id="loginDateInput" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 outline-none text-sm font-semibold bg-white transition">
+
+                <div id="loginError" role="alert" class="hidden text-rose-600 text-xs font-bold bg-rose-50 p-2.5 rounded-xl border border-rose-200 text-center">
+                    Credenziali non valide. Riprova.
                 </div>
-                <div id="loginError" class="text-rose-600 text-xs font-bold hidden bg-rose-50 p-2.5 rounded-xl border border-rose-200 text-center">Credenziali non valide. Riprova.</div>
+
                 <button type="submit" class="w-full py-3.5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl shadow-sm transition text-sm flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-utensils"></i> Entra in Cucina
+                    Entra in cucina
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- MAIN APP WRAPPER -->
+    <!-- APP -->
     <div id="appWrapper" class="flex-1 flex flex-col hidden">
-        <!-- Header -->
         <header class="bg-white/95 backdrop-blur-sm border-b border-slate-200 sticky top-0 z-30">
-            <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-700 font-bold text-lg">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-10 h-10 shrink-0 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-700 font-bold text-lg">
                         <i class="fa-solid fa-bowl-food"></i>
                     </div>
-                    <div>
+                    <div class="min-w-0">
                         <h2 class="font-bold text-slate-800 leading-tight text-base">Cianci's Menù</h2>
-                        <p class="text-xs font-semibold text-teal-600" id="welcomeUserText">Bentornato</p>
+                        <p class="text-xs font-semibold text-teal-600 truncate" id="welcomeUserText">Bentornato</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
-                    <button onclick="openGlobalCookbookModal()" class="px-3.5 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 rounded-xl text-xs font-bold border border-teal-200 transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-book-open text-teal-600"></i> Ricettario
-                    </button>
-                    <button onclick="openPantryModal()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200/70 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-box-archive text-slate-500"></i> Dispensa
-                    </button>
-                    <button onclick="openShoppingList()" class="px-3.5 py-2 bg-amber-100 hover:bg-amber-200/80 text-amber-900 rounded-xl text-xs font-bold border border-amber-200 transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-cart-shopping text-amber-700"></i> Spesa (<span id="shoppingBadgeWeek">Sett. 1</span>)
-                    </button>
-                    <button onclick="handleLogout()" class="p-2 bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 rounded-xl border border-slate-200 transition" title="Esci">
+                    <div class="hidden md:flex items-center gap-2">
+                        <button data-action="cookbook" class="px-3.5 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 rounded-xl text-xs font-bold border border-teal-200 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-book-open text-teal-600"></i> Ricettario
+                        </button>
+                        <button data-action="pantry" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200/70 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-box-archive text-slate-500"></i> Dispensa
+                        </button>
+                        <button data-action="shopping" class="px-3.5 py-2 bg-amber-100 hover:bg-amber-200/80 text-amber-900 rounded-xl text-xs font-bold border border-amber-200 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-cart-shopping text-amber-700"></i> Spesa (<span id="shoppingBadgeWeek">Sett. 1</span>)
+                        </button>
+                    </div>
+                    <button id="logoutBtn" class="p-2 bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 rounded-xl border border-slate-200 transition" title="Esci" aria-label="Esci">
                         <i class="fa-solid fa-right-from-bracket text-sm"></i>
                     </button>
                 </div>
             </div>
         </header>
 
-        <!-- Navigation Tabs (Rolling 4 Weeks) -->
-        <nav class="bg-white/90 backdrop-blur-sm border-b border-slate-200 px-4 py-2.5 sticky top-[64px] z-20 overflow-x-auto">
-            <div class="max-w-7xl mx-auto flex gap-2.5 no-scrollbar" id="weekTabsContainer">
-                <!-- Tabs populated dynamically -->
-            </div>
+        <nav class="bg-white/90 backdrop-blur-sm border-b border-slate-200 px-4 py-2.5 sticky top-[60px] md:top-[68px] z-20 overflow-x-auto" aria-label="Settimane">
+            <div class="max-w-7xl mx-auto flex gap-2.5 no-scrollbar" id="weekTabs"></div>
         </nav>
 
-        <!-- Main Content Body -->
         <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 pb-24">
-            <div id="weekContentContainer" class="space-y-6">
-                <!-- Active week meals populated dynamically -->
-            </div>
+            <div id="weekContent" class="space-y-6"></div>
         </main>
     </div>
 
-    <!-- DETAILED SUB-LEVEL / RECIPE MODAL -->
-    <div id="recipeModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl card-soft max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 relative">
+    <!-- BARRA MOBILE IN BASSO -->
+    <nav id="bottomNav" class="hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-sm border-t border-slate-200 pb-[env(safe-area-inset-bottom)]" aria-label="Navigazione principale">
+        <div class="grid grid-cols-4">
+            <button data-action="home" class="bottom-btn text-teal-700"><i class="fa-solid fa-calendar-week"></i><span>Menù</span></button>
+            <button data-action="cookbook" class="bottom-btn"><i class="fa-solid fa-book-open"></i><span>Ricettario</span></button>
+            <button data-action="shopping" class="bottom-btn"><i class="fa-solid fa-cart-shopping"></i><span>Spesa</span></button>
+            <button data-action="pantry" class="bottom-btn"><i class="fa-solid fa-box-archive"></i><span>Dispensa</span></button>
+        </div>
+    </nav>
+
+    <!-- MODALI -->
+    <div id="recipeModal" class="modal hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="recipeTitle">
+        <div class="bg-white rounded-3xl card-soft max-w-2xl w-full max-h-[90vh] overflow-y-auto p-5 sm:p-6 space-y-6">
             <div id="recipeModalContent" class="space-y-6"></div>
         </div>
     </div>
 
-    <!-- GLOBAL COOKBOOK MODAL -->
-    <div id="cookbookModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl card-soft max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-5">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+    <div id="cookbookModal" class="modal hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="cookbookTitle">
+        <div class="bg-white rounded-3xl card-soft max-w-4xl w-full max-h-[90vh] overflow-y-auto p-5 sm:p-6 space-y-4">
+            <div class="flex items-start justify-between gap-3 border-b border-slate-100 pb-4">
                 <div>
-                    <h3 class="font-bold text-xl text-slate-800"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i>Ricettario Globale (<span id="cookbookCount">100</span> ricette)</h3>
-                    <p class="text-xs font-semibold text-slate-500">100% senza latticini · Analisi nutrizionale e link alle fonti originali.</p>
+                    <h3 id="cookbookTitle" class="font-bold text-xl text-slate-800"><i class="fa-solid fa-book-open text-teal-600 mr-2"></i>Ricettario (<span id="cookbookCount">0</span>)</h3>
+                    <p class="text-xs font-semibold text-slate-500">100% senza latticini · Valori nutrizionali stimati</p>
                 </div>
-                <button onclick="closeGlobalCookbookModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition"><i class="fa-solid fa-xmark"></i></button>
+                <button data-action="close" data-modal="cookbookModal" class="modal-close shrink-0" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="flex flex-col sm:flex-row gap-2">
-                <input type="text" id="cookbookSearchInput" oninput="renderCookbookList()" placeholder="Cerca per piatto o ingrediente (es. salmone, ceci, pollo)..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-teal-500 outline-none text-xs font-semibold">
-                <select id="cookbookCategoryFilter" onchange="renderCookbookList()" class="px-4 py-2.5 rounded-xl border border-slate-200 focus:border-teal-500 outline-none text-xs font-bold bg-white text-slate-700">
-                    <option value="ALL">Tutte le categorie</option>
-                    <option value="Primo Piatto">Primi Piatti</option>
-                    <option value="Secondo Piatto">Secondi Piatti</option>
-                </select>
+            <input type="search" id="cookbookSearch" placeholder="Cerca per piatto o ingrediente (es. salmone, ceci)..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-teal-500 outline-none text-sm font-semibold">
+            <div class="space-y-2">
+                <div id="cookbookCats" class="flex flex-wrap gap-2"></div>
+                <div id="cookbookTags" class="flex flex-wrap gap-2"></div>
             </div>
             <div id="cookbookList" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </div>
     </div>
 
-    <!-- PANTRY MODAL -->
-    <div id="pantryModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div id="pantryModal" class="modal hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="pantryTitle">
         <div class="bg-white rounded-3xl card-soft max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 space-y-4">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 class="font-bold text-lg text-slate-800"><i class="fa-solid fa-box-archive text-teal-600 mr-2"></i>Gestione Dispensa</h3>
-                <button onclick="closePantryModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition"><i class="fa-solid fa-xmark"></i></button>
+                <h3 id="pantryTitle" class="font-bold text-lg text-slate-800"><i class="fa-solid fa-box-archive text-teal-600 mr-2"></i>Dispensa</h3>
+                <button data-action="close" data-modal="pantryModal" class="modal-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <p class="text-xs text-slate-500 font-semibold">Gli articoli già presenti in dispensa vengono segnalati nella lista della spesa.</p>
+            <p class="text-xs text-slate-500 font-semibold">Gli articoli già in dispensa vengono segnalati nella lista della spesa.</p>
             <div id="pantryItemsList" class="space-y-2"></div>
             <div class="flex gap-2 pt-2">
-                <input type="text" id="newPantryItem" placeholder="Nuovo articolo in dispensa..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-teal-500 outline-none text-sm font-semibold">
-                <button onclick="addPantryItem()" class="px-4 py-2.5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl text-sm transition">Aggiungi</button>
+                <input type="text" id="newPantryItem" placeholder="Nuovo articolo..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:border-teal-500 outline-none text-sm font-semibold">
+                <button data-action="add-pantry" class="px-4 py-2.5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl text-sm transition">Aggiungi</button>
             </div>
         </div>
     </div>
 
-    <!-- SHOPPING LIST MODAL (PER SETTIMANA CON STATO ACQUISTATO) -->
-    <div id="shoppingModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div id="shoppingModal" class="modal hidden fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="shoppingModalTitle">
         <div class="bg-white rounded-3xl card-soft max-w-lg w-full max-h-[85vh] overflow-y-auto p-6 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
                 <div>
-                    <h3 class="font-bold text-lg text-slate-800" id="shoppingModalTitle"><i class="fa-solid fa-cart-shopping text-teal-600 mr-2"></i>Lista della Spesa</h3>
-                    <p class="text-xs font-semibold text-teal-600" id="shoppingModalSubtitle">Riferita alla settimana attiva</p>
+                    <h3 class="font-bold text-lg text-slate-800" id="shoppingModalTitle"></h3>
+                    <p class="text-xs font-semibold text-teal-600" id="shoppingModalSubtitle"></p>
                 </div>
-                <button onclick="closeShoppingModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition"><i class="fa-solid fa-xmark"></i></button>
+                <button data-action="close" data-modal="shoppingModal" class="modal-close shrink-0" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div id="shoppingItemsList" class="space-y-1.5 divide-y divide-slate-100"></div>
+            <div class="flex items-center justify-between gap-2">
+                <span id="shoppingCounter" class="text-xs font-bold text-slate-500"></span>
+                <button data-action="copy-shopping" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold border border-slate-200 transition flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i> Copia
+                </button>
+            </div>
+            <div id="shoppingItemsList" class="divide-y divide-slate-100"></div>
         </div>
     </div>
 
-    <script>
-        const embeddedRecipes = [{"id": 1, "title": "Pasta e Ceci Tradizionale", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["320g Pasta mista di Gragnano", "400g Ceci lessati (o secchi ammollati)", "1 spicchio d'Aglio", "1 rametto di Rosmarino fresco", "Olio extravergine d'oliva q.b.", "Sale marino e pepe nero macinato fresco", "Brodo vegetale caldo (circa 1 litro)"], "steps": ["Prepara un brodo vegetale leggero con carota, sedano e cipolla e tienilo in caldo.", "In una casseruola capiente, scalda 3 cucchiai di olio EVO con uno spicchio d'aglio schiacciato e un rametto di rosmarino fino a profumare l'olio.", "Unisci i ceci scolati (tenendone da parte un terzo frullato per dare cremosità) e falli insaporire per 3-4 minuti.", "Versa il brodo vegetale caldo e porta a bollore, quindi cala la pasta mista direttamente nella zuppa.", "Cuoci 'risottando', aggiungendo brodo mano a mano se necessario, fino a cottura al dente della pasta.", "Spegni il fuoco, manteca con un filo d'olio crudo a piacimento e servi ben caldo con una macinata di pepe."], "nutrition": {"calories": "520 kcal", "protein": "24g", "carbs": "82g", "fat": "11g", "notes": "Senza latticini (perfetto per Sara), ricco di fibre e proteine vegetali."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pasta-e-ceci.html"}, {"id": 2, "title": "Petto di Pollo alla Griglia con Verdure", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "15 min", "servings": 4, "ingredients": ["600g Petto di pollo a fette sottili", "2 Zucchine medie", "1 Peperone rosso o giallo", "Olio EVO, succo di limone", "Erbe aromatiche (timo, origano)", "Sale e pepe"], "steps": ["Lava le verdure e taglia le zucchine a rondelle sottili e il peperone a listarelle.", "Scalda una piastra di ghisa a fuoco vivo finché è rovente.", "Griglia le verdure per 5-7 minuti girandole a metà cottura, poi condiscile con un pizzico di sale e un filo d'olio.", "Sulla stessa piastra, cuoci le fette di petto di pollo per circa 3-4 minuti per lato senza pungerle, mantenendole succose.", "Emulsiona in una ciotola olio EVO, succo di limone, origano e timo.", "Disponi il pollo nei piatti, irroralo con l'emulsione aromatica e accompagna con le verdure grigliate."], "nutrition": {"calories": "380 kcal", "protein": "48g", "carbs": "8g", "fat": "16g", "notes": "Alto contenuto proteico (ideale per il recupero di Nicola), leggero e senza latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/petto-di-pollo-alla-griglia/"}, {"id": 3, "title": "Filetto di Salmone al Cartoccio", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["4 Tranci di salmone fresco (circa 150g l'uno)", "200g Pomodorini pachino", "50g Olive taggiasche snocciolate", "1 spicchio d'aglio, timo fresco", "Olio EVO, sale, pepe e mezzo bicchiere di vino bianco"], "steps": ["Preriscalda il forno a 180°C in modalità statica.", "Prepara 4 fogli di carta forno abbastanza grandi da contenere ciascuno un trancio.", "Posiziona un trancio di salmone al centro di ogni foglio, condiscilo con sale, pepe e un filo d'olio.", "Aggiungi i pomodorini tagliati a metà, le olive taggiasche, qualche fogliolina di timo e un cucchiaio di vino bianco.", "Chiudi ermeticamente i cartocci a caramella per trattenere tutti i vapori e gli aromi.", "Inforna per 20 minuti. Servi direttamente nei cartocci aperti in tavola."], "nutrition": {"calories": "440 kcal", "protein": "36g", "carbs": "5g", "fat": "30g", "notes": "Ricco di Omega-3 nobili. Senza latticini."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/salmone-al-cartoccio/"}, {"id": 4, "title": "Risotto ai Funghi Porcini", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["320g Riso Carnaroli", "300g Funghi porcini freschi (o surgelati)", "1 Scalogno", "Brodo vegetale caldo q.b.", "Prezzemolo fresco tritato", "Olio EVO e vino bianco"], "steps": ["Pulisci i funghi porcini con un panno umido e tagliali a fettine non troppo sottili.", "In una casseruola fai appassire lo scalogno tritato fine con due cucchiai di olio EVO.", "Unisci i funghi e falli rosolare per 5 minuti a fuoco vivace.", "Aggiungi il riso Carnaroli e tostalo per 2 minuti mescolando continuamente finché i chicchi sono trasparenti.", "Sfumare con un goccio di vino bianco, poi procedi bagnando con il brodo vegetale bollente un mestolo alla volta.", "A fine cottura (circa 16-18 minuti), spegni la fiamma, manteca con olio e prezzemolo fresco. Lascia riposare 2 minuti prima di servire."], "nutrition": {"calories": "460 kcal", "protein": "10g", "carbs": "84g", "fat": "8g", "notes": "Ricetta tipica autunnale, naturalmente priva di formaggi e latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Risotto-ai-funghi-porcini.html"}, {"id": 5, "title": "Straccetti di Manzo con Rucola e Pomodorini", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "8 min", "servings": 4, "ingredients": ["600g Fettine di manzo tagliate a striscioline", "150g Rucola fresca lavata", "200g Pomodorini ciliegino", "Olio EVO, Aceto balsamico di Modena IGP", "Sale, pepe e un pizzico di origano"], "steps": ["In una padella antiaderente scalda un cucchiaio di olio EVO a fuoco vivo.", "Aggiungi gli straccetti di manzo e rosolali rapidamente per 3-4 minuti: devono dorarsi fuori ma rimanere teneri e succosi dentro.", "Unisci i pomodorini tagliati in quattro, salta tutto insieme per 1 minuto e spegni il fuoco.", "Crea un letto di rucola fresca nei piatti da portata.", "Adagia sopra gli straccetti caldi con il loro sughetto e i pomodorini.", "Condisci con un'emulsione leggera di olio EVO, aceto balsamico e un pizzico di sale."], "nutrition": {"calories": "410 kcal", "protein": "52g", "carbs": "6g", "fat": "19g", "notes": "Piatto super proteico e ricco di ferro. Senza latticini."}, "source": "Misya", "source_url": "https://www.misya.info/ricetta/straccetti-di-manzo-con-rucola-e-pomodorini.htm"}, {"id": 6, "title": "Zuppa di Lenticchie e Orzo", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "40 min", "servings": 4, "ingredients": ["250g Lenticchie secche", "150g Orzo perlato", "1 Carota, 1 costa di Sedano, 1 Cipolla", "Brodo vegetale caldo", "Olio EVO e 2 foglie di Alloro"], "steps": ["Prepara un soffritto tritando finemente carota, sedano e cipolla e falli appassire in pentola con olio EVO.", "Aggiungi le lenticchie e l'orzo ben sciacquati sotto acqua corrente.", "Copri con brodo vegetale caldo e aggiungi le foglie di alloro.", "Cuoci a fuoco dolce per circa 40 minuti mescolando ogni tanto.", "Regola di sale e pepe e servi con un giro d'olio a crudo."], "nutrition": {"calories": "430 kcal", "protein": "22g", "carbs": "74g", "fat": "6g", "notes": "Piatto unico nutriente e ricco di fibre. Senza latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/zuppa-di-lenticchie-e-orzo/"}, {"id": 7, "title": "Orata al Forno con Patate", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["2 Orate intere eviscerate (circa 400g l'una)", "400g Patate a pasta gialla", "1 spicchio d'Aglio, Rosmarino e 1 Limone", "Olio EVO, sale, pepe e vino bianco"], "steps": ["Pela le patate e tagliale a spicchi o fettine sottili di uguale spessore.", "Disponi le orate in una teglia unta d'olio e sistema le patate tutto intorno.", "Farcisci la pancia delle orate con aglio, fettine di limone, rosmarino, sale e pepe.", "Condisci le patate con sale, rosmarino e olio EVO, poi irrora il pesce con un goccio di vino bianco.", "Cuoci in forno preriscaldato a 190°C per circa 35 minuti."], "nutrition": {"calories": "390 kcal", "protein": "42g", "carbs": "32g", "fat": "10g", "notes": "Leggero, ricco di fosforo e facilmente digeribile. Senza latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/ricetta-orata-forno-patate/"}, {"id": 8, "title": "Frittata al Forno con Zucchine e Cipollotto", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["8 Uova fresche", "3 Zucchine medie", "2 Cipollotti freschi", "Prezzemolo tritato, sale e pepe", "Olio EVO"], "steps": ["Taglia i cipollotti a rondelle sottili e le zucchine a mezzelune.", "Stufa zucchine e cipollotti in padella con un cucchiaio di olio EVO e un pizzico di sale per 8-10 minuti.", "In una ciotola sbatti le uova con sale, pepe e prezzemolo tritato (senza formaggio per mantenere la ricetta dairy-free).", "Unisci le verdure intiepidite alle uova e versa il composto in una teglia rivestita di carta forno.", "Cuoci a 180°C per circa 20-25 minuti finché risulta gonfia e dorata."], "nutrition": {"calories": "310 kcal", "protein": "21g", "carbs": "9g", "fat": "21g", "notes": "Ottima fonte proteica da uova, leggera grazie alla cottura al forno, 100% senza latticini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/frittata-di-zucchine-al-forno/"}, {"id": 9, "title": "Spaghetti al Ragù di Tacchino", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["320g Spaghetti integrali o classici", "400g Macinato di fesa di tacchino", "500ml Passata di pomodoro", "1 Carota, 1 costa di Sedano, 1 Cipolla", "Olio EVO, vino bianco, sale e basilico"], "steps": ["Trita finemente sedano, carota e cipolla e falli soffriggere dolcemente con olio EVO.", "Aggiungi il macinato di tacchino e sgranalo bene con un cucchiaio di legno facendolo rosolare.", "Sfumare con mezzo bicchiere di vino bianco e lascia evaporare.", "Versa la passata di pomodoro, aggiusta di sale e lascia sobbollire coperto per circa 25-30 minuti.", "Cuoci gli spaghetti al dente, scolali e mantecali nel sugo con foglie di basilico fresco."], "nutrition": {"calories": "510 kcal", "protein": "34g", "carbs": "72g", "fat": "9g", "notes": "Versione magra e ad alto contenuto proteico del ragù classico. Senza latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Spaghetti-al-ragu-bianco-di-tacchino.html"}, {"id": 10, "title": "Spezzatino di Vitello con Piselli", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "50 min", "servings": 4, "ingredients": ["600g Bocconcini di vitello magro", "300g Piselli (freschi o surgelati)", "1 Cipolla dorata, 1 Carota", "Brodo vegetale o di carne caldo", "Olio EVO, farina q.b., sale e pepe"], "steps": ["Infarina leggermente i bocconcini di vitello.", "In una casseruola rosola la cipolla e la carota tritate con olio EVO, poi aggiungi la carne e falla sigillare su tutti i lati.", "Bagna con un mestolo di brodo caldo, copri con un coperchio e lascia stufare a fuoco dolce per 35 minuti.", "Aggiungi i piselli e altro brodo se necessario, proseguendo la cottura per altri 15 minuti.", "Regola di sale e pepe e servi con il suo sughetto ristretto."], "nutrition": {"calories": "420 kcal", "protein": "44g", "carbs": "20g", "fat": "17g", "notes": "Ricco di proteine nobili e ferro. Senza latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/spezzatino-con-piselli/"}, {"id": 11, "title": "Pasta e Fagioli alla Veneta", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["320g Ditaloni rigati", "400g Fagioli borlotti lessati", "1 Carota, 1 costa di Sedano, 1 Cipolla", "1 rametto di Rosmarino", "Brodo vegetale, Olio EVO, Sale e Pepe"], "steps": ["Prepara un soffritto tritando sedano, carota e cipolla e falli appassire in casseruola con olio EVO e rosmarino.", "Aggiungi metà dei fagioli interi e frulla l'altra metà con un mestolo di brodo per creare una crema vellutata.", "Versa la crema di fagioli e 800ml di brodo vegetale caldo nella pentola e porta a bollore.", "Cala i ditaloni e cuocili direttamente nella zuppa mescolando spesso.", "Servi caldo con un giro di olio EVO a crudo e pepe macinato fresco."], "nutrition": {"calories": "510 kcal", "protein": "22g", "carbs": "84g", "fat": "9g", "notes": "Ricco di proteine vegetali e fibre, completamente privo di latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pasta-e-fagioli.html"}, {"id": 12, "title": "Spaghetti alle Vongole Veraci", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Spaghetti di Gragnano", "1kg Vongole veraci spurgate", "2 spicchi d'Aglio", "Prezzemolo fresco tritato", "Olio EVO, 1/2 bicchiere di Vino bianco, Peperoncino"], "steps": ["In una padella capiente scalda l'olio EVO con gli spicchi d'aglio e un pizzico di peperoncino.", "Versa le vongole ben sciacquate, sfuma con il vino bianco e copri con un coperchio a fuoco vivace per 3-4 minuti finché si aprono.", "Scola le vongole, filtra il loro liquido di cottura e rimettilo in padella.", "Cuoci gli spaghetti molto al dente in acqua poco salata, trasferiscili in padella e termina la cottura risottandoli nel sughetto.", "Unisci le vongole (metà sgusciate) e abbondante prezzemolo tritato prima di servire."], "nutrition": {"calories": "480 kcal", "protein": "26g", "carbs": "74g", "fat": "9g", "notes": "Piatto classico di mare ricco di proteine nobili e ferro, senza latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/spaghetti-alle-vongole/"}, {"id": 13, "title": "Penne Integrali al Ragù di Lenticchie", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["320g Penne rigate integrali", "250g Lenticchie rosse decorticate", "500ml Passata di pomodoro", "1 Carota, 1 Sedano, 1 Cipolla", "Olio EVO, Alloro, Sale e Pepe"], "steps": ["Trita finemente carota, sedano e cipolla e falli stufare in casseruola con 2 cucchiai di olio EVO.", "Aggiungi le lenticchie rosse sciacquate, la passata di pomodoro, un bicchiere d'acqua e una foglia di alloro.", "Cuoci a fuoco dolce per circa 20-25 minuti finché le lenticchie sono morbide e il ragù denso.", "Lessare le penne integrali al dente, scolale e condiscile con il ragù di lenticchie e un filo d'olio a crudo."], "nutrition": {"calories": "495 kcal", "protein": "25g", "carbs": "80g", "fat": "8g", "notes": "Alternativa vegetale ad alto contenuto proteico e di fibre, 100% dairy-free."}, "source": "Cookist", "source_url": "https://www.cookist.it/ragu-di-lenticchie/"}, {"id": 14, "title": "Risotto alla Zucca e Rosmarino", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["320g Riso Carnaroli", "450g Zucca pulita a dadini", "1 Scalogno", "Brodo vegetale caldo (1 litro)", "Olio EVO, Rosmarino fresco, Sale e Pepe"], "steps": ["Fai appassire lo scalogno tritato con olio EVO e gli aghi di rosmarino tritati finemente.", "Aggiungi la zucca a dadini piccoli, rosolala per 5 minuti e bagna con un mestolo di brodo lasciando ammorbidire.", "Unisci il riso Carnaroli, tostalo per 2 minuti e procedi alla cottura aggiungendo brodo caldo poco alla volta.", "A fine cottura manteca energicamente con olio EVO a crudo per ottenere una crema liscia senza bisogno di burro o formaggio."], "nutrition": {"calories": "450 kcal", "protein": "9g", "carbs": "86g", "fat": "7g", "notes": "Cremoso naturalmente grazie all'amido del riso e alla zucca, senza latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Risotto-alla-zucca.html"}, {"id": 15, "title": "Caserecce con Tonno Fresco, Pomodorini e Olive", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Caserecce", "300g Filetto di tonno fresco a cubetti", "250g Pomodorini datterini", "60g Olive taggiasche", "1 spicchio d'Aglio, Olio EVO, Origano e Prezzemolo"], "steps": ["Rosola uno spicchio d'aglio in padella con olio EVO, poi aggiungi i pomodorini tagliati a metà e le olive.", "Cuoci a fuoco vivace per 6-7 minuti finché i pomodorini appassiscono.", "Unisci i cubetti di tonno fresco e scottali per appena 2 minuti per mantenerli teneri.", "Scola le caserecce al dente direttamente in padella, salta tutto insieme con origano e prezzemolo fresco."], "nutrition": {"calories": "530 kcal", "protein": "32g", "carbs": "75g", "fat": "11g", "notes": "Ottimo apporto di proteine e grassi insaturi, molto apprezzato anche dalle ragazze."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/primi/pasta-con-tonno-fresco-e-pomodorini/"}, {"id": 16, "title": "Gnocchi di Patate al Pomodoro e Basilico", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "15 min", "servings": 4, "ingredients": ["800g Gnocchi di patate freschi", "600ml Passata di pomodoro rustica", "1 spicchio d'Aglio", "Abbondante Basilico fresco", "Olio EVO e Sale"], "steps": ["Prepara una salsa semplice scaldando l'olio EVO con lo spicchio d'aglio intero, poi versa la passata di pomodoro.", "Cuoci la salsa a fuoco dolce per 15 minuti, regola di sale e profuma con abbondante basilico fresco spezzettato a mano.", "Cuoci gli gnocchi in acqua bollente salata: appena affiorano in superficie scolali con una schiumarola direttamente nel sugo.", "Mescola delicatamente e servi con un filo d'olio crudo."], "nutrition": {"calories": "440 kcal", "protein": "10g", "carbs": "85g", "fat": "6g", "notes": "Semplice, veloce e amato da tutta la famiglia, privo di latticini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/gnocchi-al-pomodoro/"}, {"id": 17, "title": "Cous Cous Integrale con Pollo e Verdure", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["280g Cous cous integrale", "400g Petto di pollo a cubetti", "2 Zucchine, 1 Peperone, 1 Carota", "Olio EVO, Curcuma, Succo di limone", "Brodo vegetale caldo, Sale"], "steps": ["Idrata il cous cous con uguale volume di brodo vegetale caldo e un cucchiaio di olio EVO, poi sgranalo con una forchetta.", "Taglia le verdure a dadini piccoli e saltale in padella a fuoco vivace per 7-8 minuti lasciandole croccanti.", "Nella stessa padella rosola i cubetti di pollo conditi con curcuma, sale e succo di limone per 6-7 minuti.", "Unisci cous cous, pollo e verdure in una ciotola capiente, condisci con olio EVO a crudo e servi tiepido o freddo."], "nutrition": {"calories": "515 kcal", "protein": "38g", "carbs": "64g", "fat": "11g", "notes": "Piatto unico bilanciato ad altissimo valore proteico (perfetto per Nicola), zero latticini."}, "source": "Misya", "source_url": "https://www.misya.info/ricetta/cous-cous-pollo-e-verdure.htm"}, {"id": 18, "title": "Spaghetti Aglio, Olio, Peperoncino e Pangrattato Croccante", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "12 min", "servings": 4, "ingredients": ["320g Spaghetti", "2 spicchi d'Aglio", "60g Pangrattato grossolano", "Olio EVO, Peperoncino fresco o secco", "Prezzemolo tritato e Sale"], "steps": ["Tosta il pangrattato in un padellino con un cucchiaio di olio EVO finché diventa dorato e croccante, poi tienilo da parte.", "In una padella larga scalda 4 cucchiai di olio EVO con gli spicchi d'aglio a lamelle e il peperoncino.", "Scola gli spaghetti al dente conservando un mestolo di acqua di cottura e saltali in padella per creare un'emulsione.", "Spolvera con il pangrattato croccante e prezzemolo fresco tritato."], "nutrition": {"calories": "490 kcal", "protein": "14g", "carbs": "80g", "fat": "13g", "notes": "La mollica tostata sostituisce la sapidità del formaggio grattugiato in modo 100% dairy-free."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Spaghetti-aglio-olio-e-peperoncino.html"}, {"id": 19, "title": "Farro Perlato con Ceci, Pomodorini e Rucola", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "25 min", "servings": 4, "ingredients": ["280g Farro perlato", "250g Ceci lessati", "200g Pomodorini ciliegino", "80g Rucola fresca", "Olio EVO, Aceto balsamico, Sale e Pepe"], "steps": ["Lessa il farro in acqua bollente salata per circa 20-25 minuti, poi scolalo e lascialo intiepidire.", "Unisci in una ciotola il farro, i ceci ben scolati e i pomodorini tagliati a spicchi.", "Aggiungi la rucola spezzettata e condisci con olio EVO, un filo di aceto balsamico, sale e pepe."], "nutrition": {"calories": "470 kcal", "protein": "20g", "carbs": "76g", "fat": "9g", "notes": "Ricco di fibre e proteine vegetali, ottimo anche da preparare in anticipo."}, "source": "Cookist", "source_url": "https://www.cookist.it/insalata-di-farro-con-ceci/"}, {"id": 20, "title": "Orecchiette alle Cime di Rapa", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Orecchiette fresche o secche", "600g Cime di rapa pulite", "2 spicchi d'Aglio", "4 filetti di Acciughe sott'olio", "Olio EVO, Peperoncino e Sale"], "steps": ["Pulisci le cime di rapa tenendo le cimette e le foglie più tenere.", "Porta a bollore una pentola d'acqua salata e cuoci insieme orecchiette e cime di rapa per circa 10-12 minuti.", "Nel frattempo sciogli i filetti di acciuga nell'olio EVO con aglio e peperoncino a fuoco dolce.", "Scola pasta e verdura direttamente nella padella del condimento e salta per 2 minuti."], "nutrition": {"calories": "460 kcal", "protein": "16g", "carbs": "78g", "fat": "9g", "notes": "Tradizione pugliese ricca di ferro, calcio vegetale e priva di latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Orecchiette-con-le-cime-di-rapa.html"}, {"id": 21, "title": "Mezze Maniche alla Carbonara di Zucchine (Senza Latticini)", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Mezze maniche rigate", "3 Zucchine medie", "4 Tuorli d'uovo freschi", "100g Guanciale o pancetta affumicata a cubetti", "Olio EVO, Pepe nero macinato fresco e Sale"], "steps": ["Taglia le zucchine a rondelle sottili e rosolale in padella con un filo d'olio EVO fino a doratura.", "In un'altra padella rosola il guanciale fino a renderlo croccante, poi uniscilo alle zucchine.", "Sbatti i tuorli in una ciotola con abbondante pepe nero e un cucchiaio di acqua di cottura della pasta.", "Scola la pasta al dente, versala nella padella fuori dal fuoco e manteca rapidamente con i tuorli pastorizzati dal calore."], "nutrition": {"calories": "540 kcal", "protein": "22g", "carbs": "72g", "fat": "18g", "notes": "Cremosità garantita dai soli tuorli d'uovo senza alcun formaggio."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/pasta-alla-carbonara-di-zucchine/"}, {"id": 22, "title": "Riso Venere con Gamberetti e Zucchine", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["280g Riso Venere integrale", "400g Code di gambero pulite", "2 Zucchine", "1 spicchio d'Aglio", "Olio EVO, Scorza di limone, Prezzemolo e Sale"], "steps": ["Lessa il riso Venere in abbondante acqua salata per circa 30-35 minuti.", "Taglia le zucchine a julienne o cubetti piccoli e saltale in padella con olio EVO e aglio per 5 minuti.", "Aggiungi i gamberetti puliti e cuoci per altri 3 minuti a fuoco vivo.", "Scola il riso, saltalo in padella con zucchine e gamberi e profuma con scorza di limone grattugiata e prezzemolo."], "nutrition": {"calories": "475 kcal", "protein": "30g", "carbs": "68g", "fat": "9g", "notes": "Alto contenuto proteico, ricco di antiossidanti e privo di latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Riso-Venere-con-gamberetti-e-zucchine.html"}, {"id": 23, "title": "Linguine al Pesto di Rucola e Mandorle (Senza Formaggio)", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "12 min", "servings": 4, "ingredients": ["320g Linguine", "100g Rucola fresca", "50g Mandorle pelate", "1/2 spicchio d'Aglio", "60ml Olio EVO, Sale e Pepe"], "steps": ["Frulla nel mixer la rucola lavata, le mandorle pelate, l'aglio, l'olio EVO e un pizzico di sale aggiungendo 2 cucchiai di acqua fredda per mantenere il colore verde brillante.", "Cuoci le linguine al dente, scolale tenendo da parte un po' di acqua di cottura.", "Condisci la pasta a freddo nella ciotola con il pesto di rucola e mandorle diluendo con poca acqua di cottura."], "nutrition": {"calories": "510 kcal", "protein": "16g", "carbs": "74g", "fat": "17g", "notes": "Pesto cremoso grazie alle mandorle e all'olio EVO, totalmente senza formaggio."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/primi/pasta-al-pesto-di-rucola-e-mandorle/"}, {"id": 24, "title": "Minestrone di Verdure di Stagione con Fagioli", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "40 min", "servings": 4, "ingredients": ["200g Fagioli cannellini lessati", "2 Patate, 2 Carote, 2 Zucchine", "150g Fagiolini, 100g Piselli", "1 Cipolla, 1 costa di Sedano", "Olio EVO, Basilico, Sale e Pepe"], "steps": ["Taglia tutte le verdure a dadini regolari.", "Fai appassire cipolla e sedano con olio EVO in una pentola capiente, poi aggiungi tutte le altre verdure e copri con acqua.", "Cuoci a fuoco dolce per circa 30 minuti, quindi aggiungi i fagioli cannellini e lascia insaporire altri 10 minuti.", "Servi con foglie di basilico fresco e un filo d'olio EVO a crudo."], "nutrition": {"calories": "340 kcal", "protein": "15g", "carbs": "55g", "fat": "7g", "notes": "Leggero, saziante, ricco di vitamine e senza latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Minestrone-di-verdure.html"}, {"id": 25, "title": "Pasta con Broccoli e Acciughe", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Rigatoni o Fusilli", "500g Cimette di broccolo", "4 filetti di Acciughe sott'olio", "1 spicchio d'Aglio, Peperoncino", "Olio EVO e Sale"], "steps": ["Cuoci le cimette di broccolo in acqua bollente salata per 8 minuti, poi scolale con una schiumarola conservando l'acqua per cuocere la pasta.", "In padella sciogli le acciughe con olio EVO, aglio e peperoncino, poi aggiungi i broccoli e schiacciali leggermente con la forchetta.", "Cuoci la pasta nell'acqua dei broccoli, scolala al dente e saltala in padella con il condimento."], "nutrition": {"calories": "455 kcal", "protein": "17g", "carbs": "77g", "fat": "9g", "notes": "Ricco di antiossidanti e fibre, saporito senza bisogno di formaggi."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/pasta-con-broccoli-e-acciughe/"}, {"id": 26, "title": "Risotto allo Zafferano e Zucchine", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["320g Riso Carnaroli", "2 Zucchine medie", "1 bustina di Zafferano", "1 Scalogno, Brodo vegetale caldo", "Olio EVO, Vino bianco e Sale"], "steps": ["Trita lo scalogno e fallo appassire con olio EVO, poi aggiungi le zucchine tagliate a julienne.", "Unisci il riso, tostalo 2 minuti, sfuma con vino bianco e porta a cottura con il brodo vegetale caldo.", "A 3 minuti dalla fine sciogli lo zafferano in un mestolino di brodo e versalo nel risotto.", "Manteca fuori dal fuoco con olio EVO a crudo."], "nutrition": {"calories": "450 kcal", "protein": "10g", "carbs": "84g", "fat": "8g", "notes": "Colore vivace e profumo delicato, 100% senza burro e formaggio."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/risotto-zafferano-e-zucchine/"}, {"id": 27, "title": "Spaghetti alla Puttanesca", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Spaghetti", "400g Pomodori pelati", "80g Olive nere di Gaeta", "30g Capperi dissalati", "4 filetti di Acciughe, 1 spicchio d'Aglio, Olio EVO, Prezzemolo"], "steps": ["Scalda l'olio EVO con aglio e acciughe finché queste si sciolgono.", "Aggiungi i pelati schiacciati, le olive snocciolate e i capperi e cuoci per 12 minuti.", "Scola gli spaghetti al dente, saltali nel sugo e completa con prezzemolo fresco tritato."], "nutrition": {"calories": "475 kcal", "protein": "15g", "carbs": "79g", "fat": "11g", "notes": "Sapore deciso della tradizione mediterranea, naturalmente privo di latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Spaghetti-alla-puttanesca.html"}, {"id": 28, "title": "Trofie con Calamari e Pomodorini", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Trofie fresche", "450g Calamari puliti a rondelle", "250g Pomodorini ciliegino", "1 spicchio d'Aglio, Vino bianco", "Olio EVO, Prezzemolo, Sale e Pepe"], "steps": ["Rosola l'aglio in padella con olio EVO, aggiungi i calamari a rondelle e cuocili a fiamma viva per 2 minuti sfumando con vino bianco.", "Unisci i pomodorini tagliati a metà e prosegui la cottura per 6-7 minuti.", "Cuoci le trofie al dente, scolale e saltale in padella con prezzemolo fresco."], "nutrition": {"calories": "490 kcal", "protein": "31g", "carbs": "73g", "fat": "8g", "notes": "Primo piatto di mare leggero ed equilibrato, zero latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/pasta-con-calamari-e-pomodorini/"}, {"id": 29, "title": "Zuppa di Ceci, Castagne e Rosmarino", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["350g Ceci lessati", "200g Castagne lessate e pelate", "1 Carota, 1 Sedano, 1 Cipolla", "1 rametto di Rosmarino, Brodo vegetale", "Olio EVO, Sale e Pepe"], "steps": ["Fai appassire il trito di sedano, carota e cipolla con olio EVO e rosmarino.", "Unisci i ceci e le castagne (tenendone alcune intere per guarnire), copri con brodo vegetale caldo e cuoci per 25 minuti.", "Frulla parzialmente la zuppa con un mixer a immersione per renderla cremosa, aggiusta di sale e pepe e servi con olio a crudo."], "nutrition": {"calories": "440 kcal", "protein": "18g", "carbs": "72g", "fat": "9g", "notes": "Zuppa autunnale nutriente e vellutata senza alcuna panna o formaggio."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/primi/zuppa-di-ceci-e-castagne/"}, {"id": 30, "title": "Fusilli Integrali con Sgombro Fresco e Finocchietto", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Fusilli integrali", "350g Filetti di sgombro diliscati", "150g Pomodorini gialli o rossi", "Finocchietto selvatico o aneto", "Olio EVO, 1 spicchio d'Aglio, Sale e Pepe"], "steps": ["Taglia i filetti di sgombro a bocconcini eliminando eventuali lische.", "Rosola l'aglio in padella con olio EVO, aggiungi i pomodorini e dopo 4 minuti i bocconcini di sgombro.", "Cuoci per 4-5 minuti sfumando con un goccio di acqua di cottura, poi salta i fusilli al dente profumando con finocchietto tritato."], "nutrition": {"calories": "535 kcal", "protein": "33g", "carbs": "70g", "fat": "14g", "notes": "Ricchissimo di Omega-3 e proteine, ideale per chi fa sport di resistenza."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/pasta-con-lo-sgombro/"}, {"id": 31, "title": "Paccheri al Ragù Bianco di Coniglio", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "45 min", "servings": 4, "ingredients": ["320g Paccheri di Gragnano", "450g Polpa di coniglio disossata a coltello", "1 Carota, 1 Sedano, 1 Cipolla", "Rosmarino, Timo, Vino bianco", "Brodo vegetale, Olio EVO, Sale e Pepe"], "steps": ["Trita al coltello la polpa di coniglio e prepara un battuto fine di carota, sedano e cipolla.", "Fai rosolare le verdure con olio EVO e le erbe aromatiche, poi aggiungi la carne di coniglio e sigillala bene.", "Sfuma con vino bianco e cuoci a fuoco dolce per circa 35 minuti bagnando con brodo caldo.", "Scola i paccheri al dente e mantecali nel ragù bianco con un filo d'olio crudo."], "nutrition": {"calories": "520 kcal", "protein": "36g", "carbs": "72g", "fat": "10g", "notes": "Carne magrissima e ad alta digeribilità, molto amata in Piemonte."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Paccheri-al-ragu-di-coniglio.html"}, {"id": 32, "title": "Insalata di Riso Basmati con Salmone Affumicato e Avocado", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "12 min", "servings": 4, "ingredients": ["280g Riso Basmati", "200g Salmone affumicato a listarelle", "1 Avocado maturo a cubetti", "1 Cetriolo, Succo di lime", "Olio EVO, Erba cipollina e Sale"], "steps": ["Cuoci il riso Basmati per assorbimento in acqua leggermente salata per 10-12 minuti, poi raffreddalo sgranandolo.", "Taglia l'avocado e il cetriolo a dadini e irrorali subito con il succo di lime.", "Unisci in una ciotola il riso, il salmone a striscioline, l'avocado, il cetriolo, erba cipollina tritata e olio EVO."], "nutrition": {"calories": "510 kcal", "protein": "23g", "carbs": "65g", "fat": "17g", "notes": "Fresco, veloce e bilanciato con grassi buoni e zero latticini."}, "source": "Misya", "source_url": "https://www.misya.info/ricetta/insalata-di-riso-salmone-e-avocado.htm"}, {"id": 33, "title": "Penne all'Arrabbiata con Ceci Croccanti", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["320g Penne rigate", "400g Passata di pomodoro", "200g Ceci lessati", "2 spicchi d'Aglio, Peperoncino", "Olio EVO, Prezzemolo e Sale"], "steps": ["Asciuga i ceci lessati e tostali in padella con un cucchiaio di olio EVO e un pizzico di sale finché diventano croccanti.", "Prepara il sugo all'arrabbiata rosolando aglio e peperoncino in olio EVO, poi aggiungi la passata di pomodoro e cuoci 15 minuti.", "Condisci le penne al dente con il sugo, aggiungi prezzemolo tritato e completa ogni piatto con i ceci croccanti per un boost proteico."], "nutrition": {"calories": "500 kcal", "protein": "21g", "carbs": "82g", "fat": "10g", "notes": "Un classico rivisitato con ceci croccanti per aumentare proteine e sazietà."}, "source": "Cookist", "source_url": "https://www.cookist.it/penne-arrabbiata/"}, {"id": 34, "title": "Risotto al Radicchio Rosso e Noci", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["320g Riso Carnaroli", "1 cespo di Radicchio rosso tardivo", "50g Gherigli di noce tritati", "1 Scalogno, Vino rosso o bianco", "Brodo vegetale caldo, Olio EVO, Sale e Pepe"], "steps": ["Taglia il radicchio a listarelle sottili lavandolo bene.", "Fai appassire lo scalogno con olio EVO, aggiungi il radicchio e lascialo stufare per 4 minuti.", "Tosta il riso, sfuma con un goccio di vino e porta a cottura con brodo vegetale caldo.", "Manteca fuori dal fuoco con olio EVO a crudo e aggiungi i gherigli di noce croccanti."], "nutrition": {"calories": "485 kcal", "protein": "11g", "carbs": "81g", "fat": "13g", "notes": "La nota croccante delle noci bilancia l'amarognolo del radicchio senza formaggi."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Risotto-al-radicchio.html"}, {"id": 35, "title": "Spaghetti con Cozze e Fagioli Cannellini", "category": "Primo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Spaghetti", "800g Cozze fresche pulite", "250g Fagioli cannellini lessati", "1 spicchio d'Aglio, Prezzemolo", "Olio EVO, Pepe nero e Sale"], "steps": ["Fai aprire le cozze in una padella coperta con aglio e olio EVO, poi sgusciale filtrando la loro acqua.", "Frulla i fagioli cannellini con un po' dell'acqua delle cozze fino a ottenere una crema liscia.", "Scola gli spaghetti al dente, mantecali con la crema di cannellini e unisci le cozze e il prezzemolo tritato."], "nutrition": {"calories": "525 kcal", "protein": "31g", "carbs": "78g", "fat": "9g", "notes": "Abbinamento mare-terra straordinario e cremosissimo senza alcun latticino."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/pasta-fagioli-e-cozze/"}, {"id": 36, "title": "Pasta Integrale con Pesto di Pistacchi e Gamberi", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["320g Mezze maniche integrali", "350g Gamberi puliti", "80g Pistacchi non salati sgusciati", "Olio EVO, Scorza di limone", "1/2 spicchio d'Aglio, Sale e Pepe"], "steps": ["Frulla i pistacchi con 50ml di olio EVO, mezzo spicchio d'aglio e 3 cucchiai di acqua fredda fino a ottenere una crema.", "Scotta i gamberi in padella con un filo d'olio per 2-3 minuti.", "Scola la pasta al dente, mantecala fuori dal fuoco con il pesto di pistacchi e unisci i gamberi e la scorza di limone."], "nutrition": {"calories": "540 kcal", "protein": "30g", "carbs": "68g", "fat": "17g", "notes": "Pesto ricco e vellutato senza formaggi, ad altissimo valore proteico."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pasta-al-pesto-di-pistacchi-e-gamberi.html"}, {"id": 37, "title": "Zuppa di Farro, Patate e Cavolo Nero", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["220g Farro perlato", "250g Foglie di cavolo nero", "2 Patate medie", "1 Carota, 1 Sedano, 1 Cipolla", "Brodo vegetale, Olio EVO, Sale e Pepe"], "steps": ["Prepara il soffritto con sedano, carota e cipolla in olio EVO.", "Aggiungi le patate a dadini, il cavolo nero tagliato a strisce e il farro sciacquato.", "Copri con brodo vegetale caldo e lascia sobbollire per 30-35 minuti.", "Servi con un giro generoso di olio extravergine a crudo."], "nutrition": {"calories": "410 kcal", "protein": "14g", "carbs": "73g", "fat": "7g", "notes": "Ricca di ferro, vitamine e fibre, confortante e leggera."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/primi/zuppa-di-cavolo-nero-e-farro/"}, {"id": 38, "title": "Tagliatelle all'Uovo con Ragù di Salsiccia Magra e Funghi", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["320g Tagliatelle all'uovo", "300g Salsiccia di pollo/tacchino sgranata", "250g Funghi champignon o pleurotus", "1 Scalogno, Vino bianco, Prezzemolo", "Olio EVO, Sale e Pepe"], "steps": ["Rosola lo scalogno tritato con olio EVO, aggiungi la salsiccia magra sgranata e falla dorare.", "Unisci i funghi affettati, sfuma con vino bianco e lascia cuocere per 15 minuti.", "Cuoci le tagliatelle per 4-5 minuti, scolale e saltale nel ragù con prezzemolo fresco."], "nutrition": {"calories": "530 kcal", "protein": "29g", "carbs": "66g", "fat": "16g", "notes": "Ragù gustoso e leggero usando salsiccia avicola magra, senza panna né formaggi."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/tagliatelle-funghi-e-salsiccia/"}, {"id": 39, "title": "Riso Integrale con Pollo al Curry e Latte di Cocco", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["280g Riso integrale o Basmati", "450g Petto di pollo a bocconcini", "200ml Latte di cocco per cucina", "1 cucchiaio di Curry dolce, 1 Cipolla", "Olio EVO e Sale"], "steps": ["Cuoci il riso in acqua salata e tienilo in caldo.", "Fai appassire la cipolla tritata con olio EVO, aggiungi il pollo infarinato leggermente e rosolalo bene.", "Sciogli il curry nel latte di cocco e versalo sul pollo, cuocendo a fuoco dolce per 10-12 minuti fino a ottenere una salsa cremosa.", "Servi il pollo al curry accompagnato dal riso bianco."], "nutrition": {"calories": "545 kcal", "protein": "37g", "carbs": "62g", "fat": "16g", "notes": "Cremosità esotica grazie al latte di cocco (100% vegetale e senza lattosio/caseina)."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pollo-al-curry-con-latte-di-cocco.html"}, {"id": 40, "title": "Bavette con Pesto di Pomodori Secchi e Tonno", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "12 min", "servings": 4, "ingredients": ["320g Bavette o Trenette", "240g Tonno al naturale o sott'olio sgocciolato", "80g Pomodori secchi sott'olio", "30g Pinoli o mandorle", "Olio EVO, Basilico e Pepe"], "steps": ["Frulla i pomodori secchi con i pinoli, qualche foglia di basilico e un cucchiaio di olio EVO fino a creare un pesto rustico.", "Cuoci le bavette al dente, scolale tenendo un mestolino di acqua di cottura.", "Condisci la pasta con il pesto di pomodori secchi e il tonno sminuzzato."], "nutrition": {"calories": "525 kcal", "protein": "29g", "carbs": "74g", "fat": "12g", "notes": "Pronto in 12 minuti, ricco di proteine e sapore intenso senza latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/pasta-pesto-pomodori-secchi-e-tonno/"}, {"id": 41, "title": "Crema di Piselli e Menta con Crostini Integrali", "category": "Primo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["500g Piselli (freschi o surgelati)", "1 Patata media", "1 Cipollotto fresco", "Foglie di Menta fresca, Brodo vegetale", "4 fette di Pane integrale tostato, Olio EVO, Sale"], "steps": ["Fai appassire il cipollotto affettato con olio EVO, unisci la patata a cubetti e i piselli.", "Copri con brodo vegetale caldo e cuoci per 15-18 minuti.", "Aggiungi le foglie di menta fresca, frulla tutto con un mixer a immersione fino a ottenere una vellutata liscia e servi con crostini integrali e olio crudo."], "nutrition": {"calories": "360 kcal", "protein": "16g", "carbs": "58g", "fat": "7g", "notes": "Vellutata verde brillante naturalmente cremosa senza panna."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/vellutata-di-piselli-e-menta/"}, {"id": 42, "title": "Spaghetti con Zucchine alla Nerano (Versione Senza Formaggi)", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["320g Spaghetti", "4 Zucchine romanesche", "Abbondante Basilico fresco", "1 spicchio d'Aglio", "Olio EVO, Sale e Pepe nero"], "steps": ["Taglia le zucchine a rondelle sottilissime e dorale in padella con olio EVO (tenendone da parte un terzo da frullare).", "Frulla un terzo delle zucchine con acqua di cottura, basilico e olio EVO per creare la crema legante.", "Scola gli spaghetti al dente, mantecali in padella con le zucchine, la crema verde e abbondante basilico e pepe."], "nutrition": {"calories": "470 kcal", "protein": "13g", "carbs": "78g", "fat": "12g", "notes": "Versione leggera e dairy-free che sfrutta l'emulsione di zucchine e amido della pasta."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/primi/spaghetti-alla-nerano/"}, {"id": 43, "title": "Orzotto con Asparagi e Gamberetti", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["280g Orzo perlato", "300g Asparagi verdi", "300g Gamberetti sgusciati", "1 Scalogno, Brodo vegetale caldo", "Olio EVO, Vino bianco, Sale e Pepe"], "steps": ["Pulisci gli asparagi, taglia i gambi a rondelle e tieni le punte intere.", "Fai appassire lo scalogno con olio EVO, aggiungi i gambi di asparagi e l'orzo tostato, sfuma con vino bianco.", "Cuoci come un risotto con brodo caldo per circa 20 minuti, aggiungendo negli ultimi 5 minuti le punte di asparagi e i gamberetti.", "Manteca con olio EVO a crudo."], "nutrition": {"calories": "465 kcal", "protein": "26g", "carbs": "69g", "fat": "9g", "notes": "Cereale integrale ricco di fibre abbinato alle proteine magre dei gamberi."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Orzotto-con-asparagi-e-gamberetti.html"}, {"id": 44, "title": "Pasta e Patate alla Napoletana (Senza Provola)", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["300g Pasta mista", "500g Patate a pasta gialla", "1 Carota, 1 Sedano, 1 Cipolla", "3 cucchiai di Passata di pomodoro", "Olio EVO, Rosmarino, Sale e Pepe"], "steps": ["Prepara un soffritto con carota, sedano e cipolla in olio EVO, poi aggiungi le patate tagliate a dadini piccoli.", "Unisci la passata di pomodoro, il rosmarino e acqua calda a coprire, cuocendo per 15 minuti finché le patate iniziano a sfaldarsi.", "Cala la pasta mista direttamente nella pentola e cuoci risottando fino a ottenere una consistenza cremosa e avvolgente."], "nutrition": {"calories": "480 kcal", "protein": "12g", "carbs": "92g", "fat": "7g", "notes": "Comfort food per eccellenza per le ragazze, cremosissimo anche senza formaggi."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pasta-e-patate.html"}, {"id": 45, "title": "Quinoa Tricolore con Verdure Grigliate e Cecina", "category": "Primo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["260g Quinoa tricolore sciacquata", "1 Zucchina, 1 Melanzana, 1 Peperone", "150g Cecina (farinata di ceci) a cubetti", "Olio EVO, Succo di limone, Origano e Sale"], "steps": ["Cuoci la quinoa in acqua bollente salata per 15 minuti, scolala e lasciala raffreddare.", "Griglia le verdure a fette, tagliale a dadini e uniscile alla quinoa insieme ai cubetti di cecina dorati in padella.", "Condisci con olio EVO, limone e origano."], "nutrition": {"calories": "455 kcal", "protein": "18g", "carbs": "66g", "fat": "13g", "notes": "Pseudo-cereale completo di tutti gli amminoacidi essenziali, gluten-free e dairy-free."}, "source": "Cookist", "source_url": "https://www.cookist.it/insalata-di-quinoa-e-verdure/"}, {"id": 46, "title": "Scaloppine di Pollo al Limone e Prezzemolo", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "12 min", "servings": 4, "ingredients": ["600g Fettine di petto di pollo", "Farina di riso o 00 q.b.", "Succo di 2 Limoni freschi", "Olio EVO, Prezzemolo fresco tritato", "Brodo vegetale o acqua calda, Sale e Pepe"], "steps": ["Infarina leggermente le fettine di pollo eliminando l'eccesso.", "Scalda 2 cucchiai di olio EVO in padella e rosola il pollo 2 minuti per lato.", "Versa il succo di limone filtrato e mezzo bicchiere di acqua calda o brodo per formare una cremina vellutata.", "Spolvera con prezzemolo tritato e servi caldo."], "nutrition": {"calories": "370 kcal", "protein": "47g", "carbs": "12g", "fat": "14g", "notes": "Tenerissimo e veloce, cremoso senza usare burro."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Scaloppine-di-pollo-al-limone.html"}, {"id": 47, "title": "Merluzzo in Umido con Olive e Capperi", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["600g Filetti di merluzzo (o nasello)", "300g Pomodori pelati o datterini", "60g Olive taggiasche", "20g Capperi dissalati", "1 spicchio d'Aglio, Olio EVO, Origano e Sale"], "steps": ["Rosola l'aglio in padella con olio EVO, poi aggiungi i pomodori, le olive e i capperi e cuoci per 8 minuti.", "Adagia i filetti di merluzzo nel sugo, aggiusta di sale e origano, copri con un coperchio e cuoci a fuoco dolce per 10-12 minuti.", "Servi il pesce irrorato con il suo sughetto mediterraneo."], "nutrition": {"calories": "290 kcal", "protein": "38g", "carbs": "8g", "fat": "11g", "notes": "Leggerissimo, ricco di proteine magre e pronto in 20 minuti."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/merluzzo-in-umido/"}, {"id": 48, "title": "Polpette di Tacchino al Sugo di Pomodoro", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["550g Macinato di tacchino", "1 Uovo intero", "40g Pangrattato", "500ml Passata di pomodoro", "Prezzemolo, 1 spicchio d'Aglio, Olio EVO e Sale"], "steps": ["Impasta il macinato di tacchino con l'uovo, il pangrattato, prezzemolo tritato, sale e pepe fino a ottenere un composto morbido.", "Forma delle polpette medie e rosolale in padella con un filo d'olio EVO per 4-5 minuti.", "Versa la passata di pomodoro, copri e lascia cuocere a fiamma dolce per 20 minuti."], "nutrition": {"calories": "410 kcal", "protein": "43g", "carbs": "22g", "fat": "16g", "notes": "Morbidissime anche senza formaggio nell'impasto, adorate da Elena e Anna."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/polpette-al-sugo/"}, {"id": 49, "title": "Tagliata di Manzo con Patate al Rosmarino", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["650g Controfiletto di manzo in un pezzo unico", "500g Patate novelle o a spicchi", "Rosmarino fresco, 1 spicchio d'Aglio", "Olio EVO, Sale grosso e Pepe nero"], "steps": ["Cuoci le patate a spicchi in forno o friggitrice ad aria con olio EVO, rosmarino e aglio per 25-30 minuti.", "Scalda una piastra di ghisa fino a renderla rovente e cuoci il controfiletto per 3-4 minuti per lato per mantenerlo rosato all'interno.", "Lascia riposare la carne 3 minuti, tagliala a fettine spesse e condisci con sale grosso, pepe e un filo d'olio EVO."], "nutrition": {"calories": "490 kcal", "protein": "49g", "carbs": "28g", "fat": "20g", "notes": "Piatto ricco di ferro eme e proteine ad alto valore biologico."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Tagliata-di-manzo-al-rosmarino.html"}, {"id": 50, "title": "Burger di Ceci e Zucchine al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["400g Ceci lessati", "2 Zucchine grattugiate e strizzate", "50g Farina di ceci o pangrattato", "1 Cipollotto, Cumino o Paprika dolce", "Olio EVO e Sale"], "steps": ["Frulla grossolanamente i ceci lessati in una ciotola, poi aggiungi le zucchine grattugiate ben strizzate, il cipollotto tritato, sale, spezie e farina di ceci.", "Forma 4-6 burger compatti e disponili su una teglia con carta forno spennellati con olio EVO.", "Cuoci a 190°C per 20 minuti girandoli a metà cottura."], "nutrition": {"calories": "320 kcal", "protein": "15g", "carbs": "44g", "fat": "9g", "notes": "Croccanti fuori e morbidi dentro, 100% vegetali e senza latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/burger-di-ceci/"}, {"id": 51, "title": "Branzino al Sale o al Forno con Pomodorini", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["2 Branzini (spigole) puliti da circa 400g l'uno", "250g Pomodorini ciliegino", "1 Limone, Timo e Prezzemolo", "Olio EVO, Vino bianco, Sale e Pepe"], "steps": ["Farcisci la cavità dei branzini con fettine di limone, prezzemolo, sale e pepe.", "Disponili in teglia con i pomodorini tagliati a metà, irrora con olio EVO e vino bianco.", "Cuoci in forno a 180°C per 25-30 minuti, poi sfiletta facilmente in tavola."], "nutrition": {"calories": "310 kcal", "protein": "41g", "carbs": "5g", "fat": "13g", "notes": "Pesce bianco magrissimo, ricco di Omega-3 e digeribile."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/branzino-al-forno/"}, {"id": 52, "title": "Arista di Maiale alle Mele e Rosmarino", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "45 min", "servings": 4, "ingredients": ["650g Arista di maiale in un pezzo", "2 Mele renette o golden", "1 Cipolla dorata, Rosmarino", "Olio EVO, Vino bianco, Brodo vegetale, Sale e Pepe"], "steps": ["Lega l'arista, massaggiala con sale, pepe e rosmarino e sigillala in casseruola con olio EVO su tutti i lati.", "Sfuma con vino bianco, aggiungi le mele a spicchi e la cipolla affettata, bagna con un mestolo di brodo e cuoci coperto per 35-40 minuti.", "Affetta l'arista e frulla parte delle mele con il fondo di cottura per ottenere una salsa agrodolce naturale."], "nutrition": {"calories": "430 kcal", "protein": "46g", "carbs": "18g", "fat": "19g", "notes": "Taglio magro di suino, tenerissimo grazie all'acidità delle mele."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Arista-alle-mele.html"}, {"id": 53, "title": "Uova in Purgatorio (Uova al Pomodoro)", "category": "Secondo Piatto", "prep_time": "5 min", "cook_time": "15 min", "servings": 4, "ingredients": ["8 Uova fresche", "500ml Passata di pomodoro", "1 spicchio d'Aglio, Origano", "4 fette di Pane casereccio tostato", "Olio EVO, Sale e Pepe"], "steps": ["Prepara una salsa di pomodoro veloce rosolando l'aglio in olio EVO e cuocendo la passata per 10 minuti.", "Crea 8 piccole conche nel sugo e rompi delicatamente un uovo in ciascuna.", "Copri con un coperchio e cuoci a fiamma dolce per 4-5 minuti finché l'albume è sodo e il tuorlo resta morbido. Servi con pane tostato."], "nutrition": {"calories": "350 kcal", "protein": "20g", "carbs": "24g", "fat": "19g", "notes": "Economico, rapido, altamente proteico e privo di latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/uova-in-purgatorio/"}, {"id": 54, "title": "Pollo alla Cacciatora in Bianco", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "40 min", "servings": 4, "ingredients": ["700g Cosce o sovracosce di pollo spellate", "100g Olive taggiasche", "1 Carota, 1 Sedano, 1 Cipolla", "Rosmarino, Salvia, Vino bianco", "Olio EVO, Sale e Pepe"], "steps": ["Rosola i pezzi di pollo spellati in padella capiente con olio EVO e gli odori tritati per 8 minuti.", "Sfuma con vino bianco, aggiungi le olive, rosmarino e salvia.", "Copri e lascia cuocere a fuoco dolce per circa 30 minuti bagnando con poca acqua calda se necessario."], "nutrition": {"calories": "390 kcal", "protein": "44g", "carbs": "6g", "fat": "20g", "notes": "Saporito e succoso anche senza pelle, ottimo per tutta la famiglia."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pollo-alla-cacciatora-in-bianco.html"}, {"id": 55, "title": "Seppie con Piselli in Umido", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "35 min", "servings": 4, "ingredients": ["600g Seppie pulite a listarelle", "300g Piselli", "250ml Passata di pomodoro", "1 spicchio d'Aglio, Prezzemolo", "Olio EVO, Vino bianco, Sale e Pepe"], "steps": ["Rosola l'aglio in olio EVO, aggiungi le seppie a striscioline e falle insaporire per 5 minuti sfumando con vino bianco.", "Unisci la passata di pomodoro e un bicchiere d'acqua calda, cuocendo coperto per 20 minuti.", "Aggiungi i piselli e prosegui per altri 12-15 minuti finché seppie e piselli sono teneri."], "nutrition": {"calories": "320 kcal", "protein": "35g", "carbs": "19g", "fat": "10g", "notes": "Piatto unico leggero, ricco di proteine e fibre, zero latticini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/seppie-e-piselli/"}, {"id": 56, "title": "Roast Beef all'Inglese con Rucola", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "30 min", "servings": 4, "ingredients": ["700g Scannello o girello di manzo", "100g Rucola fresca", "Senape delicata (1 cucchiaio)", "Olio EVO, Rosmarino, Sale e Pepe"], "steps": ["Massaggia la carne con olio EVO, senape, sale e pepe.", "Sigilla in padella a fuoco vivace per 5 minuti su tutti i lati, poi trasferisci in forno a 200°C per 18-20 minuti.", "Fai intiepidire, affetta sottilmente e servi su un letto di rucola."], "nutrition": {"calories": "385 kcal", "protein": "52g", "carbs": "2g", "fat": "18g", "notes": "Magrissimo, ricchissimo di proteine e ideale anche per il pranzo del giorno dopo."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/roast-beef/"}, {"id": 57, "title": "Frittata di Spinaci e Cipolla al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["8 Uova fresche", "300g Spinaci freschi lavati", "1 Cipolla dorata", "Olio EVO, Noce moscata, Sale e Pepe"], "steps": ["Stufa gli spinaci in padella con la cipolla affettata sottile e un cucchiaio di olio EVO per 6-7 minuti, poi strizzali.", "Sbatti le uova con sale, pepe e un pizzico di noce moscata, unisci gli spinaci tritati.", "Versa in teglia con carta forno e cuoci a 180°C per 20-25 minuti."], "nutrition": {"calories": "305 kcal", "protein": "22g", "carbs": "7g", "fat": "21g", "notes": "Ricca di ferro, luteina e proteine, 100% senza latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/frittata-di-spinaci-al-forno/"}, {"id": 58, "title": "Bocconcini di Tacchino con Peperoni", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["600g Fesa di tacchino a cubetti", "2 Peperoni (uno rosso e uno giallo)", "1 Cipolla rossa di Tropea", "Olio EVO, Paprika dolce, Sale e Pepe"], "steps": ["Taglia i peperoni a listarelle e la cipolla a spicchi.", "Salta le verdure in padella con olio EVO per 8 minuti, poi mettile da parte.", "Rosola i bocconcini di tacchino infarinati leggermente con paprika dolce per 7-8 minuti, poi riunisci i peperoni e fai insaporire per altri 3 minuti."], "nutrition": {"calories": "380 kcal", "protein": "46g", "carbs": "14g", "fat": "15g", "notes": "Colorato, saporito e ad altissimo contenuto proteico."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Bocconcini-di-tacchino-con-peperoni.html"}, {"id": 59, "title": "Sarde o Alici al Forno Gratinate (Senza Formaggio)", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["600g Alici fresche diliscate a libro", "60g Pangrattato", "Prezzemolo tritato, 1 spicchio d'Aglio", "Scorza di limone, Olio EVO, Sale e Pepe"], "steps": ["Prepara la panatura aromatica mescolando pangrattato, prezzemolo, aglio tritato fine, scorza di limone, sale e 2 cucchiai di olio EVO.", "Disponi le alici aperte a libro su una teglia con carta forno, cospargile con la panatura e irrora con un filo d'olio.", "Cuoci in forno ventilato a 200°C per 12-15 minuti fino a doratura croccante."], "nutrition": {"calories": "360 kcal", "protein": "36g", "carbs": "18g", "fat": "16g", "notes": "Pesce azzurro economicissimo e ricchissimo di Omega-3, croccante senza formaggio."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/alici-gratinate-al-forno/"}, {"id": 60, "title": "Spezzatino di Pollo con Patate e Carote", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["600g Bocconcini di sovracoscia di pollo spellata", "350g Patate, 2 Carote", "1 Cipolla, Rosmarino", "Brodo vegetale, Olio EVO, Sale e Pepe"], "steps": ["Rosola la cipolla tritata e il pollo a bocconcini in casseruola con olio EVO per 6-7 minuti.", "Aggiungi patate e carote a tocchetti, il rosmarino e brodo vegetale caldo a coprire.", "Cuoci coperto a fuoco dolce per 25-30 minuti finché le patate creano una salsa densa."], "nutrition": {"calories": "430 kcal", "protein": "41g", "carbs": "32g", "fat": "15g", "notes": "Piatto unico completo, morbido e apprezzato da tutta la famiglia."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/spezzatino-di-pollo-con-patate/"}, {"id": 61, "title": "Polpettone di Tonno e Patate", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "25 min", "servings": 4, "ingredients": ["320g Tonno sott'olio o al naturale ben sgocciolato", "400g Patate lesse schiacciate", "1 Uovo", "Capperi, Prezzemolo tritato, Pangrattato", "Olio EVO e Sale"], "steps": ["Schiaccia le patate lesse e mescolale con il tonno sminuzzato, l'uovo, capperi tritati, prezzemolo e un pizzico di sale.", "Dai la forma di un polpettone, passalo nel pangrattato e avvolgilo in carta forno.", "Cuoci a 190°C per 25 minuti, lascia intiepidire e servi a fette con insalata."], "nutrition": {"calories": "395 kcal", "protein": "31g", "carbs": "34g", "fat": "14g", "notes": "Ottimo anche freddo, facile da preparare in anticipo e privo di latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Polpettone-di-tonno.html"}, {"id": 62, "title": "Sgombro al Cartoccio con Arancia e Finocchi", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["4 Filetti di sgombro fresco", "1 Finocchio affettato sottile", "1 Arancia non trattata a fettine", "Olio EVO, Timo, Sale e Pepe"], "steps": ["Disponi su 4 fogli di carta forno le fettine sottili di finocchio e un filetto di sgombro ciascuno.", "Adagia sopra due fettine di arancia, timo, sale, pepe e un filo di olio EVO.", "Chiudi i cartocci e inforna a 180°C per 18-20 minuti."], "nutrition": {"calories": "375 kcal", "protein": "34g", "carbs": "10g", "fat": "22g", "notes": "Abbinamento agrumato che esalta il pesce azzurro ricco di Omega-3."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/sgombro-al-cartoccio/"}, {"id": 63, "title": "Fagioli all'Uccelletto con Salsiccia di Pollo", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "25 min", "servings": 4, "ingredients": ["500g Fagioli cannellini lessati", "4 Salsicce di pollo/tacchino", "400ml Passata di pomodoro", "2 spicchi d'Aglio, Foglie di Salvia fresca", "Olio EVO, Sale e Pepe"], "steps": ["Rosola le salsicce bucherellate in padella con olio EVO, aglio e salvia fresca.", "Aggiungi la passata di pomodoro e cuoci per 10 minuti.", "Unisci i fagioli cannellini scolati, regola di sale e pepe e lascia insaporire altri 10 minuti."], "nutrition": {"calories": "460 kcal", "protein": "34g", "carbs": "38g", "fat": "18g", "notes": "Piatto unico rustico ad alto contenuto proteico e di fibre, zero latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/fagioli-alluccelletto/"}, {"id": 64, "title": "Involtini di Pollo con Prosciutto Crudo e Salvia", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["600g Fettine sottili di petto di pollo", "80g Prosciutto crudo magro a fette", "Foglie di Salvia fresca", "Vino bianco, Olio EVO, Sale e Pepe"], "steps": ["Stendi le fettine di pollo, adagia su ciascuna una fetta di prosciutto crudo e una foglia di salvia, poi arrotola fermando con uno stecchino.", "Rosola gli involtini in padella con olio EVO per 4 minuti, sfuma con vino bianco e cuoci coperto per 10 minuti."], "nutrition": {"calories": "400 kcal", "protein": "51g", "carbs": "2g", "fat": "20g", "notes": "Altissimo contenuto proteico, saporiti grazie al prosciutto senza uso di formaggi."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Involtini-di-pollo-e-prosciutto.html"}, {"id": 65, "title": "Omelette ai Funghi Trifolati", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "15 min", "servings": 4, "ingredients": ["8 Uova fresche", "300g Funghi champignon o misti", "1 spicchio d'Aglio, Prezzemolo tritato", "Olio EVO, Sale e Pepe"], "steps": ["Trifola i funghi affettati in padella con olio EVO, aglio e prezzemolo per 8 minuti.", "Prepara 4 omelette individuali sbattendo 2 uova a persona con un cucchiaio d'acqua, sale e pepe.", "Farcisci ogni omelette con i funghi trifolati e ripiegala a mezzaluna."], "nutrition": {"calories": "325 kcal", "protein": "22g", "carbs": "5g", "fat": "24g", "notes": "Veloce, saziante e naturalmente privo di latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/omelette-ai-funghi/"}, {"id": 66, "title": "Totani Ripieni in Padella", "category": "Secondo Piatto", "prep_time": "25 min", "cook_time": "25 min", "servings": 4, "ingredients": ["4 Totani medi puliti", "60g Pangrattato, 1 Uovo", "Tentacoli tritati, Prezzemolo, 1 spicchio d'Aglio", "300ml Passata di pomodoro, Olio EVO, Vino bianco, Sale"], "steps": ["Trita i tentacoli dei totani e mescolali con pangrattato, uovo, prezzemolo, aglio tritato e un cucchiaio di olio EVO.", "Riempi le sacche dei totani senza esagerare e chiudile con uno stecchino.", "Rosola in padella con olio EVO, sfuma con vino bianco, aggiungi la passata di pomodoro e cuoci coperto per 20 minuti."], "nutrition": {"calories": "390 kcal", "protein": "38g", "carbs": "22g", "fat": "16g", "notes": "Saporito piatto di mare con ripieno morbido senza formaggi."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Totani-ripieni.html"}, {"id": 67, "title": "Cotoletta di Pollo al Forno Croccante", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["600g Fettine di petto di pollo", "2 Uova sbattute", "100g Cornflakes non zuccherati tritati o pangrattato", "Olio EVO, Paprika dolce, Sale"], "steps": ["Passa le fettine di pollo nell'uovo sbattuto con un pizzico di sale e poi nei cornflakes tritati grossolanamente.", "Disponi su teglia con carta forno, irrora con un filo d'olio EVO e cuoci a 200°C per 18-20 minuti girandole a metà cottura."], "nutrition": {"calories": "415 kcal", "protein": "47g", "carbs": "24g", "fat": "14g", "notes": "Super croccante senza frittura e senza formaggio nella panatura."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/cotolette-di-pollo-al-forno/"}, {"id": 68, "title": "Hummus di Ceci e Tahina con Verdure Croccanti e Pane Pita", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "0 min", "servings": 4, "ingredients": ["400g Ceci lessati", "2 cucchiai di Tahina (crema di sesamo)", "Succo di 1 Limone, 1/2 spicchio d'Aglio", "Carote, Sedano, Cetrioli a bastoncini, 4 Pita integrali", "Olio EVO, Paprika e Sale"], "steps": ["Frulla i ceci con la tahina, il succo di limone, l'aglio, 3 cucchiai di olio EVO, sale e 3-4 cucchiai di acqua ghiacciata fino a ottenere una crema vellutata.", "Servi l'hummus condito con paprika e olio EVO accompagnato da verdure fresche a bastoncini e pita calde."], "nutrition": {"calories": "470 kcal", "protein": "18g", "carbs": "62g", "fat": "16g", "notes": "Piatto unico mediorientale ricco di proteine vegetali e calcio dal sesamo, zero latticini."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/antipasti/hummus-di-ceci/"}, {"id": 69, "title": "Filetto di Maiale in Crosta di Erbe Aromatiche", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["650g Filetto di maiale pulito", "Rosmarino, Timo, Salvia, Prezzemolo tritati", "1 cucchiaio di Senape delicata", "Olio EVO, Sale e Pepe"], "steps": ["Rosola il filetto intero in padella con olio EVO per 4 minuti su tutti i lati.", "Spalma la superficie con la senape e rotola la carne nel trito abbondante di erbe aromatiche.", "Inforna a 190°C per 18-20 minuti, lascia riposare 5 minuti e taglia a medaglioni."], "nutrition": {"calories": "375 kcal", "protein": "50g", "carbs": "2g", "fat": "18g", "notes": "Taglio pregiato e magrissimo, succoso e aromatico."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/filetto-di-maiale-alle-erbe/"}, {"id": 70, "title": "Baccalà alla Livornese", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["600g Filetto di baccalà già dissalato", "400g Pomodori pelati", "2 spicchi d'Aglio, Prezzemolo", "Farina q.b., Olio EVO e Pepe"], "steps": ["Taglia il baccalà a tranci, infarinalo leggermente e rosolalo in padella con olio EVO per 3 minuti per lato.", "Togli il pesce, rosola l'aglio nell'olio e aggiungi i pelati schiacciati cuocendo per 12 minuti.", "Rimetti il baccalà nel sugo, cuoci per altri 8-10 minuti e completa con prezzemolo tritato."], "nutrition": {"calories": "350 kcal", "protein": "42g", "carbs": "16g", "fat": "13g", "notes": "Ricco di proteine nobili e povero di grassi, zero latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Baccala-alla-livornese.html"}, {"id": 71, "title": "Spiedini di Pollo, Zucchine e Peperoni", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["600g Petto di pollo a cubetti", "2 Zucchine, 1 Peperone giallo", "Olio EVO, Succo di limone, Rosmarino", "Sale e Pepe"], "steps": ["Alterna sugli spiedini i cubetti di pollo, rondelle spesse di zucchina e quadrati di peperone.", "Spennella con un'emulsione di olio EVO, limone, rosmarino tritato, sale e pepe.", "Cuoci sulla piastra calda o in forno a 200°C per 15 minuti girandoli a metà cottura."], "nutrition": {"calories": "365 kcal", "protein": "47g", "carbs": "8g", "fat": "15g", "notes": "Divertente da mangiare anche per le ragazze, leggero e proteico."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/spiedini-di-pollo-e-verdure/"}, {"id": 72, "title": "Frittata di Cipolle Caramellate al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["8 Uova fresche", "3 Cipolle dorate grandi", "1 cucchiaino di Zucchero di canna o aceto balsamico", "Olio EVO, Timo, Sale e Pepe"], "steps": ["Affetta sottilmente le cipolle e stufale a fuoco dolce in padella con olio EVO e un pizzico di sale per 15 minuti, sfumando con aceto balsamico.", "Sbatti le uova con sale, pepe e timo, unisci le cipolle intiepidite e cuoci in teglia al forno a 180°C per 20 minuti."], "nutrition": {"calories": "320 kcal", "protein": "20g", "carbs": "14g", "fat": "20g", "notes": "Dolce e saporita, totalmente priva di latticini."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/frittata-di-cipolle/"}, {"id": 73, "title": "Salmone alla Piastra con Salsa Verde al Prezzemolo", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "10 min", "servings": 4, "ingredients": ["4 Tranci di salmone", "1 mazzetto di Prezzemolo fresco", "20g Capperi, 2 filetti di Acciughe", "Olio EVO, Succo di limone, Sale e Pepe"], "steps": ["Prepara la salsa verde tritando finemente prezzemolo, capperi e acciughe ed emulsionando con olio EVO e succo di limone.", "Cuoci i tranci di salmone sulla piastra calda 4 minuti per lato.", "Servi il salmone con un cucchiaio di salsa verde fresca sopra."], "nutrition": {"calories": "435 kcal", "protein": "36g", "carbs": "2g", "fat": "31g", "notes": "Pronto in 10 minuti, fonte eccellente di Omega-3."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/salmone-alla-piastra/"}, {"id": 74, "title": "Polpette di Lenticchie e Carote al Forno", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "20 min", "servings": 4, "ingredients": ["400g Lenticchie lessate e ben scolate", "2 Carote grattugiate", "60g Pangrattato", "Prezzemolo, Curcuma, Olio EVO, Sale e Pepe"], "steps": ["Frulla grossolanamente le lenticchie e mescolale con le carote grattugiate, prezzemolo, curcuma, sale e pangrattato.", "Forma delle polpettine, disponile su carta forno con un filo d'olio EVO e cuoci a 190°C per 20 minuti."], "nutrition": {"calories": "315 kcal", "protein": "16g", "carbs": "46g", "fat": "7g", "notes": "100% vegetale, ricco di fibre e ferro, senza latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/polpette-di-lenticchie/"}, {"id": 75, "title": "Spezzatino di Manzo con Funghi", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "55 min", "servings": 4, "ingredients": ["650g Bocconcini di manzo (cappello del prete)", "300g Funghi champignon o porcini", "1 Cipolla, Prezzemolo, Vino rosso", "Brodo di carne o vegetale, Olio EVO, Sale e Pepe"], "steps": ["Rosola la cipolla tritata e i bocconcini di manzo in casseruola con olio EVO, poi sfuma con vino rosso.", "Copri con brodo caldo e lascia sobbollire a fuoco dolce per 40 minuti.", "Aggiungi i funghi affettati e prosegui la cottura per altri 15 minuti, completando con prezzemolo fresco."], "nutrition": {"calories": "430 kcal", "protein": "48g", "carbs": "6g", "fat": "22g", "notes": "Ricco di ferro e proteine, tenero e saporito senza latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Spezzatino-ai-funghi.html"}, {"id": 76, "title": "Platessa o Sogliola alla Mugnaia (Con Olio EVO e Limone)", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "10 min", "servings": 4, "ingredients": ["600g Filetti di platessa o sogliola", "Farina q.b.", "Succo di 1 Limone, Prezzemolo tritato", "Olio EVO e Sale"], "steps": ["Infarina delicatamente i filetti di pesce.", "Cuocili in padella con 2 cucchiai di olio EVO per 2-3 minuti per lato.", "Sfuma con succo di limone, spolvera con prezzemolo tritato e servi subito."], "nutrition": {"calories": "295 kcal", "protein": "36g", "carbs": "14g", "fat": "10g", "notes": "Delicato e molto apprezzato dai bambini, preparato con olio EVO al posto del burro."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/sogliola-alla-mugnaia/"}, {"id": 77, "title": "Straccetti di Pollo con Rucola, Pachino e Scaglie di Mandorle", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "10 min", "servings": 4, "ingredients": ["600g Petto di pollo a striscioline", "120g Rucola fresca", "200g Pomodorini pachino", "30g Mandorle a lamelle tostate", "Olio EVO, Aceto balsamico, Sale e Pepe"], "steps": ["Rosola gli straccetti di pollo in padella a fuoco vivo per 5-6 minuti.", "Disponi su un letto di rucola e pomodorini tagliati a metà.", "Condisci con olio EVO, aceto balsamico e completa con le mandorle a lamelle tostate al posto delle scaglie di grana."], "nutrition": {"calories": "405 kcal", "protein": "49g", "carbs": "7g", "fat": "19g", "notes": "Le mandorle tostate sostituiscono le scaglie di formaggio dando croccantezza e grassi buoni."}, "source": "Misya", "source_url": "https://www.misya.info/ricetta/straccetti-di-pollo-rucola-e-pomodorini.htm"}, {"id": 78, "title": "Cozze alla Tarantina con Crostini", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "12 min", "servings": 4, "ingredients": ["1,2kg Cozze fresche pulite", "350g Passata di pomodoro o pelati", "2 spicchi d'Aglio, Peperoncino", "4 fette di Pane casereccio tostato", "Olio EVO, Prezzemolo e Pepe"], "steps": ["Fai aprire le cozze in padella con aglio e olio EVO, poi filtra l'acqua di cottura.", "Nello stesso tegame aggiungi i pelati schiacciati, l'acqua delle cozze e il peperoncino cuocendo 8 minuti.", "Rimetti le cozze nel sugo, spolvera con prezzemolo e servi con pane tostato per fare la scarpetta."], "nutrition": {"calories": "380 kcal", "protein": "32g", "carbs": "34g", "fat": "12g", "notes": "Ricco di ferro, zinco e proteine marine, zero latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Cozze-alla-tarantina.html"}, {"id": 79, "title": "Pollo al Forno con Finocchi e Arance", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "45 min", "servings": 4, "ingredients": ["700g Fusi e sovracosce di pollo spellate", "2 Finocchi grandi", "2 Arance (succo di una e fette dell'altra)", "Olio EVO, Rosmarino, Sale e Pepe"], "steps": ["Disponi in teglia i pezzi di pollo e i finocchi tagliati a spicchi.", "Irrora con il succo di un'arancia e olio EVO, aggiungi sale, pepe, rosmarino e le fettine dell'altra arancia.", "Cuoci in forno a 190°C per 45 minuti."], "nutrition": {"calories": "395 kcal", "protein": "43g", "carbs": "14g", "fat": "18g", "notes": "Fresco, digeribile e perfetto anche nella stagione invernale."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/pollo-all-arancia/"}, {"id": 80, "title": "Tofu Saltato con Broccoli, Zenzero e Salsa di Soia", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "15 min", "servings": 4, "ingredients": ["400g Tofu al naturale a cubetti", "400g Cimette di broccolo", "2 cucchiai di Salsa di soia", "1 pezzetto di Zenzero fresco grattugiato", "Olio EVO o di sesamo, Semi di sesamo"], "steps": ["Sbollenta le cimette di broccolo per 4 minuti, poi scolale.", "Rosola i cubetti di tofu ben asciugati in padella con olio EVO finché diventano dorati su tutti i lati.", "Aggiungi i broccoli, lo zenzero grattugiato e la salsa di soia, saltando tutto per 3 minuti e guarnendo con semi di sesamo."], "nutrition": {"calories": "330 kcal", "protein": "26g", "carbs": "14g", "fat": "19g", "notes": "Ottima alternativa proteica vegetale ricca di calcio e zero latticini."}, "source": "Cookist", "source_url": "https://www.cookist.it/tofu-con-broccoli/"}, {"id": 81, "title": "Hamburger di Manzo Fatti in Casa con Insalata Mista", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "10 min", "servings": 4, "ingredients": ["600g Macinato scelto di manzo", "1 cucchiaino di Senape, Erbe aromatiche", "Insalata mista, Pomodori, Carote julienne", "Olio EVO, Sale e Pepe"], "steps": ["Lavora delicatamente il macinato di manzo con sale, pepe, senape ed erbe tritate, formando 4 hamburger.", "Cuoci sulla piastra calda per 3-4 minuti per lato.", "Servi con abbondante insalata mista condita con olio EVO."], "nutrition": {"calories": "420 kcal", "protein": "48g", "carbs": "5g", "fat": "23g", "notes": "Semplice, genuino e ad altissimo contenuto proteico."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Hamburger-fatti-in-casa.html"}, {"id": 82, "title": "Gamberoni al Forno Gratinati al Limone", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "12 min", "servings": 4, "ingredients": ["600g Gamberoni o mazzancolle", "50g Pangrattato, Prezzemolo tritato", "Succo e scorza di 1 Limone", "Olio EVO, Sale e Pepe"], "steps": ["Incidi il dorso dei gamberoni per eliminare il filamento nero lasciando il carapace.", "Disponili in teglia, cospargili con pangrattato, prezzemolo, scorza di limone, olio EVO e succo di limone.", "Cuoci in forno ventilato a 200°C per 10-12 minuti."], "nutrition": {"calories": "320 kcal", "protein": "37g", "carbs": "14g", "fat": "12g", "notes": "Leggero, elegante e pronto in pochissimi minuti."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/gamberoni-gratinati-al-forno/"}, {"id": 83, "title": "Frittata con Asparagi Verdi al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "25 min", "servings": 4, "ingredients": ["8 Uova fresche", "350g Asparagi verdi", "1 Cipollotto fresco", "Olio EVO, Sale e Pepe"], "steps": ["Taglia gli asparagi a rondelle tenendo le punte intere e saltali in padella con il cipollotto e olio EVO per 6 minuti.", "Sbatti le uova con sale e pepe, incorpora gli asparagi e inforna in teglia a 180°C per 20-25 minuti."], "nutrition": {"calories": "305 kcal", "protein": "22g", "carbs": "7g", "fat": "21g", "notes": "Depurativa, proteica e priva di latticini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/frittata-di-asparagi/"}, {"id": 84, "title": "Pesce Spada alla Griglia con Salmoriglio", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "8 min", "servings": 4, "ingredients": ["4 Fette di pesce spada fresco", "Olio EVO, Succo di 1 Limone", "Origano fresco o secco, Prezzemolo", "1/2 spicchio d'Aglio, Sale e Pepe"], "steps": ["Prepara il salmoriglio emulsionando 4 cucchiai di olio EVO con il succo di limone, acqua tiepida, origano, prezzemolo e aglio tritato.", "Cuoci le fette di pesce spada sulla piastra calda per 3-4 minuti per lato e irrora subito con la salsa."], "nutrition": {"calories": "360 kcal", "protein": "40g", "carbs": "2g", "fat": "21g", "notes": "Classico siciliano leggero, rapido e ricco di proteine."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Pesce-spada-alla-griglia.html"}, {"id": 85, "title": "Pollo alla Pizzaiola", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "20 min", "servings": 4, "ingredients": ["600g Fettine di petto di pollo", "400ml Passata di pomodoro", "Abbondante Origano, 1 spicchio d'Aglio", "Olive nere denocciolate", "Olio EVO e Sale"], "steps": ["Scalda l'olio EVO con l'aglio, versa la passata di pomodoro, le olive e l'origano cuocendo per 10 minuti.", "Adagia le fettine di pollo nel sugo e cuoci per 4-5 minuti per lato tenendole morbide."], "nutrition": {"calories": "375 kcal", "protein": "47g", "carbs": "8g", "fat": "16g", "notes": "Saporito e succoso senza mozzarella, perfetto anche per i bambini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/petto-di-pollo-alla-pizzaiola/"}, {"id": 86, "title": "Polpette di Merluzzo e Patate al Forno", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "20 min", "servings": 4, "ingredients": ["450g Filetti di merluzzo", "300g Patate lesse", "1 Uovo, Prezzemolo tritato", "Scorza di limone, Pangrattato, Olio EVO e Sale"], "steps": ["Cuoci il merluzzo al vapore o in padella per 5 minuti, poi sminuzzalo.", "Mescola il pesce con le patate schiacciate, l'uovo, prezzemolo, scorza di limone e sale.", "Forma le polpette, passale nel pangrattato e cuoci al forno a 190°C per 20 minuti con un filo d'olio."], "nutrition": {"calories": "340 kcal", "protein": "32g", "carbs": "28g", "fat": "11g", "notes": "Modo ideale per far mangiare il pesce bianco anche ad Anna ed Elena."}, "source": "Cookist", "source_url": "https://www.cookist.it/polpette-di-merluzzo/"}, {"id": 87, "title": "Coniglio alla Ligure con Olive Taggiasche e Pinoli", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "45 min", "servings": 4, "ingredients": ["700g Coniglio a pezzi", "80g Olive taggiasche", "30g Pinoli", "Rosmarino, Timo, 1 spicchio d'Aglio, Vino bianco", "Olio EVO, Brodo vegetale, Sale e Pepe"], "steps": ["Rosola i pezzi di coniglio con olio EVO, aglio e le erbe aromatiche per 10 minuti.", "Sfuma con vino bianco, poi aggiungi le olive taggiasche, i pinoli e un mestolo di brodo.", "Cuoci coperto a fuoco dolce per 35 minuti."], "nutrition": {"calories": "415 kcal", "protein": "44g", "carbs": "4g", "fat": "24g", "notes": "Carne bianca magra e saporita della tradizione ligure-piemontese."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/coniglio-alla-ligure/"}, {"id": 88, "title": "Uova Sode Ripiene con Crema di Tonno e Avocado", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "10 min", "servings": 4, "ingredients": ["8 Uova fresche", "160g Tonno al naturale sgocciolato", "1/2 Avocado maturo", "Succo di limone, Erba cipollina, Olio EVO e Sale"], "steps": ["Lessa le uova per 9 minuti, raffreddale, sgusciale e tagliale a metà nel senso della lunghezza.", "Preleva i tuorli e frullali con il tonno, l'avocado, succo di limone, un cucchiaio di olio EVO e sale.", "Farcisci gli albumi con la crema ottenuta e decora con erba cipollina."], "nutrition": {"calories": "340 kcal", "protein": "26g", "carbs": "4g", "fat": "24g", "notes": "Cremoso senza maionese industriale né formaggi spalmabili."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/antipasti/uova-ripiene/"}, {"id": 89, "title": "Straccetti di Vitello con Carciofi Trifolati", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["600g Fettine di vitello a striscioline", "4 Carciofi puliti a spicchi sottili", "1 spicchio d'Aglio, Prezzemolo, Succo di limone", "Olio EVO, Sale e Pepe"], "steps": ["Pulisci i carciofi, tagliali a fettine sottili e saltali in padella con olio EVO e aglio per 10 minuti.", "Unisci gli straccetti di vitello a fuoco vivace per 3-4 minuti, regola di sale e pepe e completa con prezzemolo tritato."], "nutrition": {"calories": "375 kcal", "protein": "48g", "carbs": "8g", "fat": "16g", "notes": "Leggero, ricco di ferro e fibre, zero latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Straccetti-con-i-carciofi.html"}, {"id": 90, "title": "Torta Salata Integrale con Verdure e Uova (Senza Formaggi)", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "35 min", "servings": 4, "ingredients": ["1 rotolo di Pasta brisée o sfoglia all'olio EVO", "3 Zucchine, 2 Carote, 1 Porro", "4 Uova fresche", "Curcuma, Olio EVO, Sale e Pepe"], "steps": ["Stufa in padella il porro affettato, le carote e le zucchine a julienne con olio EVO per 10 minuti.", "Sbatti le uova con sale, pepe e un pizzico di curcuma, unisci le verdure intiepidite.", "Fodera una tortiera con la pasta brisée, versa il ripieno e cuoci a 180°C per 35 minuti."], "nutrition": {"calories": "410 kcal", "protein": "15g", "carbs": "38g", "fat": "22g", "notes": "Torta rustica fragrante preparata senza panna né formaggi."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/torta-salata-alle-verdure/"}, {"id": 91, "title": "Calamari alla Griglia con Insalata di Finocchi e Arance", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "10 min", "servings": 4, "ingredients": ["600g Calamari puliti", "2 Finocchi, 2 Arance", "Olio EVO, Prezzemolo, Succo di limone", "Sale e Pepe"], "steps": ["Incidi leggermente i calamari e cuocili sulla piastra rovente per 2-3 minuti per lato.", "Condisci con olio EVO, limone e prezzemolo.", "Accompagna con un'insalata fresca di finocchi affettati sottili e arance pelate a vivo."], "nutrition": {"calories": "315 kcal", "protein": "34g", "carbs": "16g", "fat": "12g", "notes": "Freschissimo, ad alto contenuto proteico e leggero."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/calamari-alla-griglia/"}, {"id": 92, "title": "Fesa di Tacchino Arrosto alle Erbe con Purè di Patate all'Olio EVO", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "45 min", "servings": 4, "ingredients": ["650g Fesa di tacchino intera", "500g Patate farinose", "Rosmarino, Salvia, Vino bianco", "Olio EVO, Brodo vegetale, Sale e Pepe"], "steps": ["Rosola la fesa di tacchino in casseruola con olio EVO ed erbe aromatiche, sfuma con vino bianco e cuoci coperto con brodo per 40 minuti.", "Lessa le patate, passale allo schiacciapatate e mantecale con olio EVO a filo e acqua di cottura calda fino a ottenere un purè soffice senza latte né burro."], "nutrition": {"calories": "435 kcal", "protein": "48g", "carbs": "34g", "fat": "12g", "notes": "Purè leggero e digeribile mantecato con ottimo olio extravergine."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Fesa-di-tacchino-arrosto.html"}, {"id": 93, "title": "Zuppa di Pesce Misto alla Mediterranea", "category": "Secondo Piatto", "prep_time": "25 min", "cook_time": "30 min", "servings": 4, "ingredients": ["700g Pesce misto da zuppa (merluzzo, calamari, cozze, gamberi)", "400g Pomodori pelati", "1 spicchio d'Aglio, Prezzemolo, Vino bianco", "4 fette di Pane casereccio tostato, Olio EVO e Sale"], "steps": ["Rosola l'aglio con olio EVO, aggiungi i calamari a rondelle e sfuma con vino bianco.", "Versa i pelati schiacciati e un bicchiere d'acqua, cuoci 15 minuti.", "Unisci i filetti di merluzzo, i gamberi e le cozze pulite cuocendo per 8-10 minuti. Servi con pane tostato."], "nutrition": {"calories": "390 kcal", "protein": "41g", "carbs": "28g", "fat": "12g", "notes": "Ricchissimo di proteine marine, iodio e Omega-3, zero latticini."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/zuppa-di-pesce/"}, {"id": 94, "title": "Polpette di Carne e Zucchine al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "20 min", "servings": 4, "ingredients": ["500g Macinato magro di manzo o vitello", "2 Zucchine grattugiate e strizzate", "1 Uovo, 50g Pangrattato", "Prezzemolo, Olio EVO, Sale e Pepe"], "steps": ["Impasta la carne con le zucchine strizzate, l'uovo, il pangrattato, prezzemolo, sale e pepe.", "Forma le polpette, disponile su carta forno con un filo d'olio EVO e cuoci a 190°C per 20 minuti."], "nutrition": {"calories": "385 kcal", "protein": "39g", "carbs": "16g", "fat": "18g", "notes": "Le zucchine nell'impasto mantengono le polpette morbidissime senza formaggi."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/polpette-di-carne-e-zucchine/"}, {"id": 95, "title": "Farinata di Ceci (Cecina) con Rosmarino", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "25 min", "servings": 4, "ingredients": ["250g Farina di ceci", "750ml Acqua a temperatura ambiente", "60ml Olio EVO", "Rosmarino fresco, Sale e Pepe nero"], "steps": ["Sbatti la farina di ceci con l'acqua e un pizzico di sale eliminando i grumi e lascia riposare almeno 1-2 ore.", "Versa 40ml di olio EVO in una teglia bassa, aggiungi la pastella, il resto dell'olio e gli aghi di rosmarino.", "Cuoci in forno caldo a 220°C per 20-25 minuti fino a doratura croccante."], "nutrition": {"calories": "390 kcal", "protein": "16g", "carbs": "42g", "fat": "17g", "notes": "Tradizione ligure-piemontese 100% vegetale, gluten-free e dairy-free."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Farinata-di-ceci.html"}, {"id": 96, "title": "Salmone al Forno con Crosta di Pistacchi", "category": "Secondo Piatto", "prep_time": "10 min", "cook_time": "18 min", "servings": 4, "ingredients": ["4 Tranci di salmone fresco", "60g Pistacchi tritati grossolanamente", "20g Pangrattato", "1 cucchiaino di Senape, Olio EVO, Sale e Pepe"], "steps": ["Spennella la superficie dei tranci di salmone con un velo di senape.", "Premi sopra il mix di pistacchi tritati, pangrattato, sale e un filo d'olio EVO.", "Cuoci in forno a 180°C per 15-18 minuti."], "nutrition": {"calories": "475 kcal", "protein": "39g", "carbs": "10g", "fat": "31g", "notes": "Croccante e goloso, ricchissimo di proteine e grassi sani."}, "source": "Cookist", "source_url": "https://www.cookist.it/salmone-in-crosta-di-pistacchi/"}, {"id": 97, "title": "Insalata Nizzarda Completa", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "15 min", "servings": 4, "ingredients": ["240g Tonno sott'olio sgocciolato", "4 Uova sode", "200g Fagiolini lessati", "2 Patate lesse, 200g Pomodorini", "Olive nere, Acciughe, Olio EVO e Sale"], "steps": ["Lessa patate, fagiolini e uova, poi lasciali raffreddare.", "Componi nei piatti patate a spicchi, fagiolini, pomodorini, olive, tonno a pezzetti, acciughe e uova sode a spicchi.", "Condisci con olio EVO, sale e pepe."], "nutrition": {"calories": "460 kcal", "protein": "32g", "carbs": "28g", "fat": "24g", "notes": "Piatto unico completo e fresco, perfetto nelle giornate calde."}, "source": "Il Cucchiaio d'Argento", "source_url": "https://www.cucchiaio.it/ricetta/insalata-nizzarda/"}, {"id": 98, "title": "Spezzatino di Tacchino alla Birra Chiara", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "35 min", "servings": 4, "ingredients": ["600g Bocconcini di fesa di tacchino", "330ml Birra chiara", "1 Cipolla dorata, 1 Carota", "Farina q.b., Olio EVO, Timo, Sale e Pepe"], "steps": ["Infarina leggermente i bocconcini di tacchino e rosolali in casseruola con cipolla, carota e olio EVO.", "Versa la birra chiara, aggiungi il timo, sale e pepe e cuoci coperto a fuoco dolce per 25-30 minuti fino a ottenere una salsa cremosa."], "nutrition": {"calories": "395 kcal", "protein": "46g", "carbs": "16g", "fat": "14g", "notes": "Tenerissimo e saporito, con una salsa naturalmente densa senza latticini."}, "source": "GialloZafferano", "source_url": "https://ricette.giallozafferano.it/Spezzatino-di-tacchino-alla-birra.html"}, {"id": 99, "title": "Frittata di Patate e Rosmarino al Forno", "category": "Secondo Piatto", "prep_time": "15 min", "cook_time": "30 min", "servings": 4, "ingredients": ["8 Uova fresche", "350g Patate a pasta gialla", "1 Cipollotto, Rosmarino tritato", "Olio EVO, Sale e Pepe"], "steps": ["Taglia le patate a dadini piccoli e cuocile in padella con olio EVO e rosmarino per 12 minuti finché sono tenere.", "Sbatti le uova con sale e pepe, aggiungi le patate e cuoci in teglia al forno a 180°C per 20 minuti."], "nutrition": {"calories": "375 kcal", "protein": "21g", "carbs": "24g", "fat": "21g", "notes": "Un grande classico amato da tutta la famiglia, 100% senza latticini."}, "source": "Fatto in casa da Benedetta", "source_url": "https://www.fattoincasadabenedetta.it/ricetta/frittata-di-patate-al-forno/"}, {"id": 100, "title": "Sarde o Sgombro in Saor Leggero", "category": "Secondo Piatto", "prep_time": "20 min", "cook_time": "20 min", "servings": 4, "ingredients": ["600g Filetti di sgombro o sarde", "2 Cipolle bianche affettate", "40g Uvetta ammollata, 30g Pinoli", "1/2 bicchiere di Aceto di vino bianco", "Olio EVO, Farina q.b. e Sale"], "steps": ["Infarina i filetti di pesce e cuocili in padella con un filo d'olio EVO per 3 minuti per lato.", "Stufa le cipolle affettate con olio EVO per 10 minuti, sfuma con l'aceto e aggiungi uvetta e pinoli.", "Disponi il pesce a strati con le cipolle in saor e lascia insaporire."], "nutrition": {"calories": "430 kcal", "protein": "34g", "carbs": "24g", "fat": "22g", "notes": "Ricco di Omega-3, ottimo anche preparato il giorno prima."}, "source": "La Cucina Italiana", "source_url": "https://www.lacucinaitaliana.it/ricetta/secondi/sarde-in-saor/"}];
-
-        let recipesData = [];
-        let currentUser = null;
-        let referenceDate = new Date();
-        let activeWeekIndex = 0;
-
-        let weeklyPlan = JSON.parse(localStorage.getItem('cianci_weekly_plan')) || {};
-        let checkedShopping = JSON.parse(localStorage.getItem('cianci_checked_shopping')) || {};
-        let pantry = JSON.parse(localStorage.getItem('cianci_pantry')) || [
-            "Olio extravergine d'oliva", "Olio EVO", "Sale", "Pepe", "Aglio", "Vino bianco"
-        ];
-
-        async function loadRecipes() {
-            try {
-                const response = await fetch('recipes.json');
-                if (response.ok) {
-                    recipesData = await response.json();
-                } else {
-                    throw new Error('Fetch failed');
-                }
-            } catch (e) {
-                recipesData = embeddedRecipes;
-            }
-        }
-
-        document.getElementById('loginDateInput').valueAsDate = new Date();
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const user = document.getElementById('usernameInput').value.trim();
-            const pass = document.getElementById('passwordInput').value.trim();
-            const dateVal = document.getElementById('loginDateInput').value;
-
-            const validUsers = ['Sara', 'Elena', 'Nicola', 'Anna'];
-            const found = validUsers.find(u => u.toLowerCase() === user.toLowerCase());
-
-            if (found && pass === '7264') {
-                currentUser = found;
-                referenceDate = new Date(dateVal);
-                localStorage.setItem('cianci_user', currentUser);
-                localStorage.setItem('cianci_refdate', dateVal);
-                
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('appWrapper').classList.remove('hidden');
-                document.getElementById('welcomeUserText').innerText = `Bentornato/a, ${currentUser}`;
-                
-                initApp();
-            } else {
-                document.getElementById('loginError').classList.remove('hidden');
-            }
-        }
-
-        function handleLogout() {
-            localStorage.removeItem('cianci_user');
-            localStorage.removeItem('cianci_refdate');
-            location.reload();
-        }
-
-        function getRollingWeeks(refDate) {
-            const anchor = new Date('2026-11-09');
-            const diffTime = refDate.getTime() - anchor.getTime();
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            const diffWeeks = Math.floor(diffDays / 7);
-            
-            let currentCycleIndex = ((diffWeeks % 4) + 4) % 4;
-
-            const weeks = [];
-            for (let i = 0; i < 4; i++) {
-                const weekNum = ((currentCycleIndex + i) % 4) + 1;
-                
-                const weekStart = new Date(refDate);
-                const day = weekStart.getDay();
-                const diffToMonday = weekStart.getDate() - day + (day === 0 ? -6 : 1) + (i * 7);
-                weekStart.setDate(diffToMonday);
-                
-                const weekEnd = new Date(weekStart);
-                weekEnd.setDate(weekStart.getDate() + 6);
-
-                const monthsNames = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
-                const tabLabel = `${weekStart.getDate()}-${weekEnd.getDate()} ${monthsNames[weekEnd.getMonth()]}`;
-
-                weeks.push({
-                    id: weekNum,
-                    label: tabLabel,
-                    startDate: weekStart,
-                    endDate: weekEnd
-                });
-            }
-            return weeks;
-        }
-
-        function ensureWeekPlan(weekId) {
-            if (!weeklyPlan[weekId]) {
-                weeklyPlan[weekId] = [];
-                const primi = recipesData.filter(r => r.category === 'Primo Piatto');
-                const secondi = recipesData.filter(r => r.category === 'Secondo Piatto');
-                for (let d = 0; d < 7; d++) {
-                    const pIdx = ((weekId - 1) * 7 + d) % (primi.length || recipesData.length);
-                    const sIdx = ((weekId - 1) * 7 + d) % (secondi.length || recipesData.length);
-                    const r1 = primi.length ? primi[pIdx] : recipesData[d % recipesData.length];
-                    const r2 = secondi.length ? secondi[sIdx] : recipesData[(d + 1) % recipesData.length];
-                    weeklyPlan[weekId].push({
-                        lunchId: r1.id,
-                        dinnerId: r2.id
-                    });
-                }
-                localStorage.setItem('cianci_weekly_plan', JSON.stringify(weeklyPlan));
-            }
-        }
-
-        function regenerateWeek(weekId) {
-            delete weeklyPlan[weekId];
-            const primi = recipesData.filter(r => r.category === 'Primo Piatto');
-            const secondi = recipesData.filter(r => r.category === 'Secondo Piatto');
-            const shuffle = arr => [...arr].sort(() => Math.random() - 0.5);
-            const pShuf = shuffle(primi);
-            const sShuf = shuffle(secondi);
-            weeklyPlan[weekId] = [];
-            for (let d = 0; d < 7; d++) {
-                weeklyPlan[weekId].push({
-                    lunchId: pShuf[d % pShuf.length].id,
-                    dinnerId: sShuf[d % sShuf.length].id
-                });
-            }
-            localStorage.setItem('cianci_weekly_plan', JSON.stringify(weeklyPlan));
-            renderApp();
-        }
-
-        function swapMeal(weekId, dayIdx, mealType, event) {
-            event.stopPropagation();
-            ensureWeekPlan(weekId);
-            const currentId = mealType === 'lunch' ? weeklyPlan[weekId][dayIdx].lunchId : weeklyPlan[weekId][dayIdx].dinnerId;
-            
-            const candidates = recipesData.filter(r => r.id !== currentId);
-            if (candidates.length > 0) {
-                const chosen = candidates[Math.floor(Math.random() * candidates.length)];
-                if (mealType === 'lunch') {
-                    weeklyPlan[weekId][dayIdx].lunchId = chosen.id;
-                } else {
-                    weeklyPlan[weekId][dayIdx].dinnerId = chosen.id;
-                }
-                localStorage.setItem('cianci_weekly_plan', JSON.stringify(weeklyPlan));
-                renderApp();
-            }
-        }
-
-        async function initApp() {
-            await loadRecipes();
-            renderApp();
-        }
-
-        function renderApp() {
-            const weeks = getRollingWeeks(referenceDate);
-            const activeWeek = weeks[activeWeekIndex];
-            ensureWeekPlan(activeWeek.id);
-
-            document.getElementById('shoppingBadgeWeek').innerText = `Sett. ${activeWeek.id}`;
-            
-            const tabsContainer = document.getElementById('weekTabsContainer');
-            tabsContainer.innerHTML = '';
-            weeks.forEach((w, idx) => {
-                const isActive = idx === activeWeekIndex;
-                const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 ${isActive ? 'bg-teal-500 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200/70'}`;
-                btn.innerHTML = `<i class="fa-regular fa-calendar"></i> ${w.label} <span class="text-[10px] px-2 py-0.5 rounded-full ${isActive ? 'bg-teal-600 text-teal-50' : 'bg-white text-slate-600'}">Sett. ${w.id}</span>`;
-                btn.onclick = () => {
-                    activeWeekIndex = idx;
-                    renderApp();
-                };
-                tabsContainer.appendChild(btn);
-            });
-
-            const contentContainer = document.getElementById('weekContentContainer');
-            
-            let html = `
-                <div class="bg-teal-50/80 border border-teal-200/80 rounded-3xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3 py-1 rounded-full">Ciclo Rolling · Settimana ${activeWeek.id}</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-2">Dal ${activeWeek.startDate.toLocaleDateString('it-IT')} al ${activeWeek.endDate.toLocaleDateString('it-IT')}</h3>
-                        <p class="text-xs font-medium text-slate-600 mt-0.5">Tocca un piatto per leggere la ricetta passo-passo o usa 🔄 per cambiarlo.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2 shrink-0">
-                        <button onclick="regenerateWeek(${activeWeek.id})" class="px-3.5 py-2.5 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-xl border border-slate-200 text-xs flex items-center gap-1.5 transition" title="Genera nuove combinazioni dal ricettario da 100 piatti">
-                            <i class="fa-solid fa-shuffle text-teal-600"></i> Rimescola
-                        </button>
-                        <button onclick="openShoppingList()" class="px-4 py-2.5 bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold rounded-xl border border-amber-200 text-xs flex items-center gap-2 transition">
-                            <i class="fa-solid fa-cart-shopping text-amber-700"></i> Spesa Settimana ${activeWeek.id}
-                        </button>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
-            `;
-
-            const days = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
-            days.forEach((dayName, dIdx) => {
-                const dayPlan = weeklyPlan[activeWeek.id][dIdx];
-                const r1 = recipesData.find(r => r.id === dayPlan.lunchId) || recipesData[0];
-                const r2 = recipesData.find(r => r.id === dayPlan.dinnerId) || recipesData[1];
-
-                html += `
-                    <div class="bg-white rounded-3xl card-soft p-4 flex flex-col justify-between space-y-3">
-                        <div>
-                            <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
-                                <h4 class="font-bold text-slate-800 text-sm">${dayName}</h4>
-                                <span class="text-[10px] bg-slate-100 text-slate-500 font-bold px-2 py-0.5 rounded-full">G${dIdx+1}</span>
-                            </div>
-                            <div class="space-y-3 mt-3">
-                                <!-- PRANZO -->
-                                <div class="p-3 bg-amber-50/50 rounded-2xl border border-amber-200/70 hover:bg-amber-50 transition cursor-pointer" onclick="openRecipe(${r1.id})">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-[10px] font-bold text-amber-700 uppercase flex items-center gap-1"><i class="fa-solid fa-sun text-amber-400"></i> Pranzo</span>
-                                        <button onclick="swapMeal(${activeWeek.id}, ${dIdx}, 'lunch', event)" title="Cambia ricetta" class="w-6 h-6 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-teal-600 hover:border-teal-300 transition text-[10px]">
-                                            <i class="fa-solid fa-rotate"></i>
-                                        </button>
-                                    </div>
-                                    <h5 class="font-bold text-xs text-slate-800 mt-1.5 leading-snug">${r1.title}</h5>
-                                    <div class="mt-2 pt-2 border-t border-amber-200/50 space-y-1">
-                                        <p class="text-[10px] font-bold text-slate-600"><i class="fa-solid fa-bolt text-amber-500 mr-1"></i>${r1.nutrition.calories} · ${r1.nutrition.protein} prot</p>
-                                        <p class="text-[10px] text-slate-500 line-clamp-1">${r1.ingredients.slice(0, 2).join(', ')}...</p>
-                                        <p class="text-[10px] font-medium text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${r1.cook_time}</p>
-                                    </div>
-                                </div>
-
-                                <!-- CENA -->
-                                <div class="p-3 bg-teal-50/40 rounded-2xl border border-teal-200/60 hover:bg-teal-50/80 transition cursor-pointer" onclick="openRecipe(${r2.id})">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-[10px] font-bold text-teal-700 uppercase flex items-center gap-1"><i class="fa-solid fa-moon text-indigo-400"></i> Cena</span>
-                                        <button onclick="swapMeal(${activeWeek.id}, ${dIdx}, 'dinner', event)" title="Cambia ricetta" class="w-6 h-6 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-teal-600 hover:border-teal-300 transition text-[10px]">
-                                            <i class="fa-solid fa-rotate"></i>
-                                        </button>
-                                    </div>
-                                    <h5 class="font-bold text-xs text-slate-800 mt-1.5 leading-snug">${r2.title}</h5>
-                                    <div class="mt-2 pt-2 border-t border-teal-200/40 space-y-1">
-                                        <p class="text-[10px] font-bold text-slate-600"><i class="fa-solid fa-bolt text-amber-500 mr-1"></i>${r2.nutrition.calories} · ${r2.nutrition.protein} prot</p>
-                                        <p class="text-[10px] text-slate-500 line-clamp-1">${r2.ingredients.slice(0, 2).join(', ')}...</p>
-                                        <p class="text-[10px] font-medium text-slate-400"><i class="fa-regular fa-clock mr-1"></i>${r2.cook_time}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-            contentContainer.innerHTML = html;
-        }
-
-        function openRecipe(recipeId) {
-            const r = recipesData.find(item => item.id === recipeId);
-            if (!r) return;
-
-            const modalContent = document.getElementById('recipeModalContent');
-            modalContent.innerHTML = `
-                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                    <div>
-                        <span class="text-xs font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full border border-teal-200/70 uppercase">${r.category}</span>
-                        <h3 class="font-bold text-xl text-slate-800 mt-2">${r.title}</h3>
-                    </div>
-                    <button onclick="closeRecipeModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition"><i class="fa-solid fa-xmark text-base"></i></button>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/80 text-center font-semibold text-xs">
-                    <div><span class="block text-[10px] text-slate-400 uppercase">Preparazione</span><span class="text-slate-700">${r.prep_time}</span></div>
-                    <div><span class="block text-[10px] text-slate-400 uppercase">Cottura</span><span class="text-slate-700">${r.cook_time}</span></div>
-                    <div><span class="block text-[10px] text-slate-400 uppercase">Porzioni</span><span class="text-slate-700">${r.servings} pers.</span></div>
-                    <div>
-                        <span class="block text-[10px] text-slate-400 uppercase">Fonte Web</span>
-                        <a href="${r.source_url}" target="_blank" rel="noopener noreferrer" class="text-teal-600 underline hover:text-teal-800 font-bold inline-flex items-center gap-1">
-                            ${r.source} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-basket-shopping text-teal-600"></i> Ingredienti (4 persone)</h4>
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        ${r.ingredients.map(i => `<li class="text-xs bg-slate-50/70 p-2.5 rounded-xl border border-slate-200/70 font-semibold text-slate-700 flex items-center gap-2"><i class="fa-solid fa-check text-teal-500 text-xs"></i>${i}</li>`).join('')}
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-sm text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-fire text-amber-500"></i> Preparazione Passo per Passo</h4>
-                    <ol class="space-y-2">
-                        ${r.steps.map((s, idx) => `<li class="text-xs bg-white p-3 rounded-xl border border-slate-200/80 font-medium text-slate-700 flex gap-3"><span class="font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-lg border border-teal-200/70 h-fit">${idx+1}</span><span class="self-center leading-relaxed">${s}</span></li>`).join('')}
-                    </ol>
-                </div>
-                <div class="bg-teal-50/70 border border-teal-200/80 p-4 rounded-2xl space-y-1">
-                    <span class="text-xs font-bold text-teal-800 uppercase">Analisi Nutrizionale (per porzione)</span>
-                    <p class="text-xs font-bold text-slate-700">${r.nutrition.calories} · Proteine: ${r.nutrition.protein} · Carboidrati: ${r.nutrition.carbs} · Grassi: ${r.nutrition.fat}</p>
-                    <p class="text-xs font-medium text-teal-700">${r.nutrition.notes}</p>
-                </div>
-            `;
-            document.getElementById('recipeModal').classList.remove('hidden');
-            document.getElementById('recipeModal').classList.add('flex');
-        }
-
-        function closeRecipeModal() {
-            document.getElementById('recipeModal').classList.add('hidden');
-            document.getElementById('recipeModal').classList.remove('flex');
-        }
-
-        function renderCookbookList() {
-            const query = (document.getElementById('cookbookSearchInput')?.value || '').toLowerCase().trim();
-            const cat = document.getElementById('cookbookCategoryFilter')?.value || 'ALL';
-            const filtered = recipesData.filter(r => {
-                const matchCat = cat === 'ALL' || r.category === cat;
-                const matchQuery = !query || r.title.toLowerCase().includes(query) || r.ingredients.some(i => i.toLowerCase().includes(query));
-                return matchCat && matchQuery;
-            });
-            document.getElementById('cookbookCount').innerText = filtered.length;
-            const listEl = document.getElementById('cookbookList');
-            listEl.innerHTML = filtered.map(r => `
-                <div class="bg-slate-50/50 rounded-2xl border border-slate-200/80 p-4 flex flex-col justify-between space-y-3">
-                    <div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-[10px] font-bold uppercase bg-teal-50 text-teal-700 px-2.5 py-0.5 rounded-full border border-teal-200/70">${r.category}</span>
-                            <span class="text-[10px] font-semibold text-slate-400"><i class="fa-regular fa-clock mr-1"></i>Prep ${r.prep_time} · Cott. ${r.cook_time}</span>
-                        </div>
-                        <h4 class="font-bold text-base text-slate-800 mt-2">#${r.id} · ${r.title}</h4>
-                        <p class="text-xs font-bold text-teal-700 mt-1">${r.nutrition.calories} · ${r.nutrition.protein} Proteine</p>
-                        <p class="text-[11px] text-slate-500 mt-1">${r.nutrition.notes}</p>
-                        <div class="mt-2 pt-2 border-t border-slate-200/60">
-                            <p class="text-[11px] font-medium text-slate-600"><strong>Ingredienti:</strong> ${r.ingredients.join(', ')}</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between pt-2">
-                        <button onclick="closeGlobalCookbookModal(); openRecipe(${r.id});" class="px-3.5 py-1.5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl text-xs transition">
-                            Vedi Preparazione
-                        </button>
-                        <a href="${r.source_url}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-teal-600 hover:underline flex items-center gap-1">
-                            ${r.source} <i class="fa-solid fa-external-link-alt text-[10px]"></i>
-                        </a>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openGlobalCookbookModal() {
-            renderCookbookList();
-            document.getElementById('cookbookModal').classList.remove('hidden');
-            document.getElementById('cookbookModal').classList.add('flex');
-        }
-
-        function closeGlobalCookbookModal() {
-            document.getElementById('cookbookModal').classList.add('hidden');
-            document.getElementById('cookbookModal').classList.remove('flex');
-        }
-
-        function openPantryModal() {
-            renderPantryList();
-            document.getElementById('pantryModal').classList.remove('hidden');
-            document.getElementById('pantryModal').classList.add('flex');
-        }
-
-        function closePantryModal() {
-            document.getElementById('pantryModal').classList.add('hidden');
-            document.getElementById('pantryModal').classList.remove('flex');
-        }
-
-        function renderPantryList() {
-            const list = document.getElementById('pantryItemsList');
-            list.innerHTML = pantry.map((item, idx) => `
-                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200/70 text-xs font-semibold">
-                    <span class="text-slate-700">${item}</span>
-                    <button onclick="removePantryItem(${idx})" class="text-slate-400 hover:text-rose-500 transition"><i class="fa-solid fa-trash-can text-sm"></i></button>
-                </div>
-            `).join('');
-        }
-
-        function addPantryItem() {
-            const input = document.getElementById('newPantryItem');
-            const val = input.value.trim();
-            if (val) {
-                pantry.push(val);
-                localStorage.setItem('cianci_pantry', JSON.stringify(pantry));
-                input.value = '';
-                renderPantryList();
-            }
-        }
-
-        function removePantryItem(idx) {
-            pantry.splice(idx, 1);
-            localStorage.setItem('cianci_pantry', JSON.stringify(pantry));
-            renderPantryList();
-        }
-
-        function toggleShoppingCheck(weekId, itemName) {
-            if (!checkedShopping[weekId]) checkedShopping[weekId] = {};
-            checkedShopping[weekId][itemName] = !checkedShopping[weekId][itemName];
-            localStorage.setItem('cianci_checked_shopping', JSON.stringify(checkedShopping));
-        }
-
-        function openShoppingList() {
-            const weeks = getRollingWeeks(referenceDate);
-            const activeWeek = weeks[activeWeekIndex];
-            ensureWeekPlan(activeWeek.id);
-
-            document.getElementById('shoppingModalTitle').innerHTML = `<i class="fa-solid fa-cart-shopping text-teal-600 mr-2"></i>Lista Spesa · Settimana ${activeWeek.id}`;
-            document.getElementById('shoppingModalSubtitle').innerText = `Periodo: ${activeWeek.label}`;
-
-            const ingredientMap = new Map();
-            weeklyPlan[activeWeek.id].forEach(day => {
-                const r1 = recipesData.find(r => r.id === day.lunchId);
-                const r2 = recipesData.find(r => r.id === day.dinnerId);
-                [r1, r2].forEach(recipe => {
-                    if (recipe && recipe.ingredients) {
-                        recipe.ingredients.forEach(ing => {
-                            ingredientMap.set(ing, (ingredientMap.get(ing) || 0) + 1);
-                        });
-                    }
-                });
-            });
-
-            const weekChecks = checkedShopping[activeWeek.id] || {};
-            const shoppingListEl = document.getElementById('shoppingItemsList');
-
-            if (ingredientMap.size === 0) {
-                shoppingListEl.innerHTML = `<p class="text-xs text-slate-400 py-4">Nessun ingrediente trovato per questa settimana.</p>`;
-            } else {
-                let listHtml = '';
-                ingredientMap.forEach((count, ing) => {
-                    const isChecked = !!weekChecks[ing];
-                    const inPantry = pantry.some(p => ing.toLowerCase().includes(p.toLowerCase()));
-                    const escapedIng = ing.replace(/'/g, "\\'");
-                    
-                    let statusBadge = '';
-                    if (isChecked) {
-                        statusBadge = `<span class="text-[10px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full border border-emerald-200 font-bold shrink-0 inline-flex items-center gap-1"><i class="fa-solid fa-check"></i> Acquistato</span>`;
-                    } else if (inPantry) {
-                        statusBadge = `<span class="text-[10px] bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full border border-slate-200 font-bold shrink-0">In Dispensa</span>`;
-                    } else {
-                        statusBadge = `<span class="text-[10px] bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full border border-amber-200 font-bold shrink-0">Da Acquistare</span>`;
-                    }
-
-                    listHtml += `
-                        <div class="py-2.5 flex items-center justify-between gap-2 text-xs font-semibold">
-                            <label class="text-slate-700 flex items-center gap-2.5 cursor-pointer flex-1 ${isChecked ? 'line-through text-slate-400' : ''}">
-                                <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleShoppingCheck(${activeWeek.id}, '${escapedIng}'); openShoppingList();" class="w-4 h-4 rounded text-teal-600 border-slate-300 focus:ring-teal-500">
-                                <span>${ing} ${count > 1 ? `<span class="text-teal-600 font-bold">(x${count})</span>` : ''}</span>
-                            </label>
-                            ${statusBadge}
-                        </div>
-                    `;
-                });
-                shoppingListEl.innerHTML = listHtml;
-            }
-
-            document.getElementById('shoppingModal').classList.remove('hidden');
-            document.getElementById('shoppingModal').classList.add('flex');
-        }
-
-        function closeShoppingModal() {
-            document.getElementById('shoppingModal').classList.add('hidden');
-            document.getElementById('shoppingModal').classList.remove('flex');
-        }
-
-        window.onload = () => {
-            const savedUser = localStorage.getItem('cianci_user');
-            const savedDate = localStorage.getItem('cianci_refdate');
-            if (savedUser && savedDate) {
-                currentUser = savedUser;
-                referenceDate = new Date(savedDate);
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('appWrapper').classList.remove('hidden');
-                document.getElementById('welcomeUserText').innerText = `Bentornato/a, ${currentUser}`;
-                initApp();
-            }
-        };
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>

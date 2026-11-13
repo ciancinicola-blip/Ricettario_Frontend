@@ -1,0 +1,180 @@
+/* ==========================================================================
+   COLORI: palette verde salvia + carta
+   I colori sono variabili RGB. Il tema scuro è una seconda serie di valori,
+   ottenuta invertendo la scala dei grigi e dei verdi.
+   ========================================================================== */
+
+:root {
+    --teal-50: 243 246 241;
+    --teal-100: 228 235 224;
+    --teal-200: 201 215 196;
+    --teal-300: 167 189 160;
+    --teal-400: 134 163 127;
+    --teal-500: 107 143 102;
+    --teal-600: 85 116 83;
+    --teal-700: 68 93 67;
+    --teal-800: 54 73 47;
+    --teal-900: 42 58 38;
+    --amber-50: 251 245 236;
+    --amber-100: 245 232 211;
+    --amber-200: 235 210 170;
+    --amber-300: 221 181 126;
+    --amber-400: 201 149 88;
+    --amber-500: 182 122 62;
+    --amber-600: 150 97 47;
+    --amber-700: 118 74 38;
+    --amber-800: 90 58 32;
+    --amber-900: 66 41 26;
+    --slate-50: 251 248 242;
+    --slate-100: 243 238 228;
+    --slate-200: 230 223 208;
+    --slate-300: 211 202 183;
+    --slate-400: 168 159 140;
+    --slate-500: 133 125 107;
+    --slate-600: 100 93 78;
+    --slate-700: 76 71 57;
+    --slate-800: 54 50 42;
+    --slate-900: 36 33 28;
+    --rose-50: 251 237 235;
+    --rose-100: 246 217 213;
+    --rose-200: 239 197 191;
+    --rose-300: 230 167 158;
+    --rose-400: 218 133 121;
+    --rose-500: 200 106 92;
+    --rose-600: 160 58 46;
+    --rose-700: 126 45 36;
+    --rose-800: 92 33 27;
+    --rose-900: 61 22 19;
+    --white: 255 253 248;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        --teal-50: 42 58 38;
+        --teal-100: 54 73 47;
+        --teal-200: 68 93 67;
+        --teal-300: 85 116 83;
+        --teal-400: 107 143 102;
+        --teal-500: 134 163 127;
+        --teal-600: 167 189 160;
+        --teal-700: 201 215 196;
+        --teal-800: 228 235 224;
+        --teal-900: 243 246 241;
+        --amber-50: 66 41 26;
+        --amber-100: 90 58 32;
+        --amber-200: 118 74 38;
+        --amber-300: 150 97 47;
+        --amber-400: 182 122 62;
+        --amber-500: 201 149 88;
+        --amber-600: 221 181 126;
+        --amber-700: 235 210 170;
+        --amber-800: 245 232 211;
+        --amber-900: 251 245 236;
+        --slate-50: 36 33 28;
+        --slate-100: 54 50 42;
+        --slate-200: 76 71 57;
+        --slate-300: 100 93 78;
+        --slate-400: 133 125 107;
+        --slate-500: 168 159 140;
+        --slate-600: 211 202 183;
+        --slate-700: 230 223 208;
+        --slate-800: 243 238 228;
+        --slate-900: 251 248 242;
+        --rose-50: 61 22 19;
+        --rose-100: 92 33 27;
+        --rose-200: 126 45 36;
+        --rose-300: 160 58 46;
+        --rose-400: 200 106 92;
+        --rose-500: 218 133 121;
+        --rose-600: 230 167 158;
+        --rose-700: 239 197 191;
+        --rose-800: 246 217 213;
+        --rose-900: 251 237 235;
+        --white: 38 36 32;
+    }
+}
+
+/* ==========================================================================
+   STILE BASE
+   ========================================================================== */
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(var(--slate-50));
+    color: rgb(var(--slate-700));
+}
+
+.card-soft {
+    border: 1.5px solid rgb(var(--slate-200));
+    box-shadow: 0 4px 12px -2px rgb(0 0 0 / 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.card-soft:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -4px rgb(0 0 0 / 0.08);
+    border-color: rgb(var(--slate-300));
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+:focus-visible {
+    outline: 2px solid rgb(var(--teal-500));
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+[role="button"] { cursor: pointer; }
+
+/* Sfondo dei modali: scuro in entrambi i temi */
+.modal {
+    background-color: rgb(24 22 18 / 0.45) !important;
+}
+
+/* Pulsante chiudi dei modali */
+.modal-close {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    background: rgb(var(--slate-100));
+    color: rgb(var(--slate-600));
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease;
+}
+.modal-close:hover { background: rgb(var(--slate-200)); }
+
+/* Barra in basso su mobile */
+.bottom-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0.6rem 0 0.5rem;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgb(var(--slate-500));
+}
+.bottom-btn i { font-size: 17px; }
+.bottom-btn:hover { color: rgb(var(--teal-700)); }
+
+/* Chip dei filtri */
+.chip {
+    padding: 0.4rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgb(var(--slate-200));
+    background: rgb(var(--white));
+    color: rgb(var(--slate-600));
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.chip:hover { background: rgb(var(--slate-100)); }
+.chip.is-active {
+    background: rgb(var(--teal-600));
+    border-color: rgb(var(--teal-600));
+    color: rgb(var(--white));
+}
