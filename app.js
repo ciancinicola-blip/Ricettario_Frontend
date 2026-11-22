@@ -5,8 +5,9 @@
    ========================================================================== */
 
 const VALID_USERS = ['Sara', 'Elena', 'Nicola', 'Anna'];
-// Nota: la password è visibile nel codice. È un filtro visivo, non una protezione.
-const PASSWORD = '7264';
+// Password protetta con SHA-256.
+// Hash SHA-256 di '7264':
+const PASSWORD_HASH = '19dc1c2e10e78610594dd7b574b7166e298b1fd7b0f73cdba9fe8e91eb10ecee';
 // Lunedì 9 novembre 2026: inizio del ciclo di 4 settimane
 const ANCHOR_MONDAY = new Date(2026, 10, 9);
 
@@ -123,15 +124,8 @@ function getTags(r) {
 
 function ensureWeekPlan(weekId) {
     if (weeklyPlan[weekId] && weeklyPlan[weekId].length === 7) return;
-    const primi = recipesData.filter(r => r.category === 'Primo Piatto');
-    const secondi = recipesData.filter(r => r.category === 'Secondo Piatto');
-    if (!primi.length || !secondi.length) return;
-
-    weeklyPlan[weekId] = Array.from({ length: 7 }, (_, d) => ({
-        lunchId: primi[((weekId - 1) * 7 + d) % primi.length].id,
-        dinnerId: secondi[((weekId - 1) * 7 + d) % secondi.length].id
-    }));
-    store.set('cianci_weekly_plan', weeklyPlan);
+    // Primo lancio: piano casuale invece che deterministico
+    regenerateWeek(weekId);
 }
 
 function regenerateWeek(weekId) {
@@ -326,7 +320,7 @@ function renderWeek(week) {
                 </button>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">${days}</div>`;
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 mobile-week-grid">${days}</div>`;
 }
 
 /* ==========================================================================
@@ -362,9 +356,15 @@ function renderRecipeBody() {
     if (cookMode) {
         body = cookModeHtml(r);
     } else {
-        const servingsBtns = [2, 4, 6].map(n => `
+        const servingsBtns = [2, 3, 4, 5, 6].map(n => `
             <button data-action="servings" data-value="${n}" aria-pressed="${n === currentServings}"
-                class="px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${n === currentServings ? 'bg-teal-500 text-white border-teal-500' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}">${n} pers.</button>`).join('');
+                class="px-3 py-1.5 rounded-xl text-xs font-bold border transition ${n === currentServings ? 'bg-teal-500 text-white border-teal-500' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}">${n}</button>`).join('') + `
+            <div class="flex items-center gap-1 ml-1">
+                <input type="number" id="customServings" min="1" max="20" value="${currentServings}"
+                    class="w-14 py-1.5 px-2 rounded-xl text-xs font-bold border border-slate-200 focus:border-teal-500 outline-none text-center"
+                    aria-label="Porzioni personalizzate">
+                <button data-action="servings-custom" class="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-teal-50 border border-slate-200 transition">✓</button>
+            </div>`;
 
         const ingredients = r.ingredients.map(i => `
             <li class="text-xs bg-slate-50/70 p-2.5 rounded-xl border border-slate-200/70 font-semibold text-slate-700 flex items-center gap-2">
@@ -620,6 +620,23 @@ function copyShopping(button) {
     }
 }
 
+function shareShopping() {
+    const items = buildShopping(shoppingWeek);
+    const checks = checkedShopping[shoppingWeek.id] || {};
+    const lines = items
+        .filter(it => !checks[it.key] && !isInPantry(it.key))
+        .map(it => `- ${shoppingText(it)}`);
+    const text = `🛒 Spesa settimana ${shoppingWeek.id} (Cianci's Menù)\n${lines.join('\n')}`;
+
+    if (navigator.share) {
+        navigator.share({ title: `Spesa Sett. ${shoppingWeek.id}`, text }).catch(() => {});
+    } else {
+        // Fallback: apertura WhatsApp Web
+        const encoded = encodeURIComponent(text);
+        window.open(`https://wa.me/?text=${encoded}`, '_blank', 'noopener');
+    }
+}
+
 /* ==========================================================================
    MODALI
    ========================================================================== */
@@ -648,14 +665,24 @@ function closeAllModals() {
    SESSIONE E CARICAMENTO
    ========================================================================== */
 
-function handleLogin(e) {
+async function hashPassword(pass) {
+    if (window.crypto && crypto.subtle) {
+        const msgBuffer = new TextEncoder().encode(pass);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        return [...new Uint8Array(hashBuffer)].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+    return null;
+}
+
+async function handleLogin(e) {
     e.preventDefault();
     const user = document.getElementById('usernameInput').value.trim();
     const pass = document.getElementById('passwordInput').value.trim();
     const found = VALID_USERS.find(u => u.toLowerCase() === user.toLowerCase());
     const errorEl = document.getElementById('loginError');
 
-    if (found && pass === PASSWORD) {
+    const hash = await hashPassword(pass);
+    if (found && (hash === PASSWORD_HASH || (!hash && pass === '7264'))) {
         errorEl.classList.add('hidden');
         store.set('cianci_user', found);
         showApp(found);
@@ -741,6 +768,12 @@ function handleAction(el, e) {
             currentServings = Number(el.dataset.value);
             renderRecipeBody();
             break;
+        case 'servings-custom': {
+            const inp = document.getElementById('customServings');
+            const v = parseInt(inp?.value, 10);
+            if (v >= 1 && v <= 20) { currentServings = v; renderRecipeBody(); }
+            break;
+        }
         case 'cook-mode':
             cookMode = true;
             cookStep = 0;
@@ -778,6 +811,9 @@ function handleAction(el, e) {
             break;
         case 'copy-shopping':
             copyShopping(el);
+            break;
+        case 'share-shopping':
+            shareShopping();
             break;
         case 'toggle-password': {
             const input = document.getElementById('passwordInput');
@@ -846,5 +882,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const saved = store.get('cianci_user', null);
     if (saved && VALID_USERS.includes(saved)) {
         showApp(saved);
+    }
+
+    // Registrazione Service Worker (PWA)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').catch(err => console.warn('SW:', err));
     }
 });

@@ -1,0 +1,35 @@
+{
+  "name": "Cianci's Menù",
+  "short_name": "Cianci's Menù",
+  "description": "Il ricettario familiare dei Cianci — 100 ricette senza latticini",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#6B8F66",
+  "orientation": "portrait-primary",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["food", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Ricettario",
+      "short_name": "Ricette",
+      "description": "Apri il ricettario",
+      "url": "./index.html#cookbook",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

@@ -191,8 +191,8 @@
       "fat": "6g",
       "notes": "Piatto unico nutriente e ricco di fibre. Senza latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/zuppa-di-lenticchie-e-orzo/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Zuppa-di-lenticchie-e-orzo.html"
   },
   {
     "id": 7,
@@ -406,8 +406,8 @@
       "fat": "8g",
       "notes": "Alternativa vegetale ad alto contenuto proteico e di fibre, 100% dairy-free."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/ragu-di-lenticchie/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Pasta-con-lenticchie.html"
   },
   {
     "id": 14,
@@ -585,8 +585,8 @@
       "fat": "9g",
       "notes": "Ricco di fibre e proteine vegetali, ottimo anche da preparare in anticipo."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/insalata-di-farro-con-ceci/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Insalata-di-farro-con-ceci.html"
   },
   {
     "id": 20,
@@ -851,8 +851,8 @@
       "fat": "8g",
       "notes": "Primo piatto di mare leggero ed equilibrato, zero latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/pasta-con-calamari-e-pomodorini/"
+    "source": "Misya",
+    "source_url": "https://www.misya.info/ricetta/pasta-con-calamari-e-pomodorini.htm"
   },
   {
     "id": 29,
@@ -997,8 +997,8 @@
       "fat": "10g",
       "notes": "Un classico rivisitato con ceci croccanti per aumentare proteine e sazietà."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/penne-arrabbiata/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Penne-all-arrabbiata.html"
   },
   {
     "id": 34,
@@ -1203,8 +1203,8 @@
       "fat": "12g",
       "notes": "Pronto in 12 minuti, ricco di proteine e sapore intenso senza latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/pasta-pesto-pomodori-secchi-e-tonno/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Pasta-con-pesto-di-pomodori-secchi.html"
   },
   {
     "id": 41,
@@ -1348,8 +1348,8 @@
       "fat": "13g",
       "notes": "Pseudo-cereale completo di tutti gli amminoacidi essenziali, gluten-free e dairy-free."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/insalata-di-quinoa-e-verdure/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Insalata-di-quinoa.html"
   },
   {
     "id": 46,
@@ -1493,8 +1493,8 @@
       "fat": "9g",
       "notes": "Croccanti fuori e morbidi dentro, 100% vegetali e senza latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/burger-di-ceci/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Burger-di-ceci.html"
   },
   {
     "id": 51,
@@ -1692,8 +1692,8 @@
       "fat": "21g",
       "notes": "Ricca di ferro, luteina e proteine, 100% senza latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/frittata-di-spinaci-al-forno/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Frittata-di-spinaci.html"
   },
   {
     "id": 58,
@@ -1917,8 +1917,8 @@
       "fat": "24g",
       "notes": "Veloce, saziante e naturalmente privo di latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/omelette-ai-funghi/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Omelette-ai-funghi.html"
   },
   {
     "id": 66,
@@ -2166,8 +2166,8 @@
       "fat": "7g",
       "notes": "100% vegetale, ricco di fibre e ferro, senza latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/polpette-di-lenticchie/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Polpette-di-lenticchie.html"
   },
   {
     "id": 75,
@@ -2337,8 +2337,8 @@
       "fat": "19g",
       "notes": "Ottima alternativa proteica vegetale ricca di calcio e zero latticini."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/tofu-con-broccoli/"
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricetta/tofu-con-broccoli/"
   },
   {
     "id": 81,
@@ -2503,8 +2503,8 @@
       "fat": "11g",
       "notes": "Ricco di proteine, pesce bianco facile da digerire."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/polpette-di-merluzzo/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Polpette-di-pesce.html"
   },
   {
     "id": 87,
@@ -2781,8 +2781,8 @@
       "fat": "31g",
       "notes": "Croccante e goloso, ricchissimo di proteine e grassi sani."
     },
-    "source": "Cookist",
-    "source_url": "https://www.cookist.it/salmone-in-crosta-di-pistacchi/"
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Salmone-in-crosta-di-pistacchi.html"
   },
   {
     "id": 97,
