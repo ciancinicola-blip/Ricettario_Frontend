@@ -2895,5 +2895,590 @@
     },
     "source": "La Cucina Italiana",
     "source_url": "https://www.lacucinaitaliana.it/search/?q=Sarde%20o%20Sgombro%20in%20Saor%20Leggero"
+  },
+  {
+    "id": 101,
+    "title": "Caponata di Melanzane Leggera",
+    "category": "Contorno",
+    "prep_time": "20 min",
+    "cook_time": "25 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Melanzane tonde",
+      "200g Sedano",
+      "150g Cipolla bianca",
+      "150g Pomodori pelati",
+      "50g Olive verdi denocciolate",
+      "30g Capperi dissalati",
+      "30ml Olio extravergine d'oliva",
+      "20ml Aceto di vino bianco",
+      "10g Zucchero",
+      "Basilico fresco q.b.",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Taglia le melanzane a cubetti regolari di circa 2 cm e il sedano a tocchetti.",
+      "In una padella capiente scalda l'olio EVO e fai appassire la cipolla affettata finemente e il sedano per 5-7 minuti.",
+      "Aggiungi i cubetti di melanzana e falli rosolare a fuoco vivace per circa 10 minuti fino a doratura.",
+      "Unisci i pomodori pelati schiacciati, le olive a rondelle e i capperi dissalati.",
+      "In un bicchierino mescola l'aceto e lo zucchero, versa il composto in padella e lascia sfumare a fiamma viva per 2 minuti.",
+      "Abbassa la fiamma, copri e lascia cuocere a fuoco lento per 10 minuti. Spegni e aggiungi abbondante basilico fresco spezzettato a mano."
+    ],
+    "nutrition": {
+      "calories": "160 kcal",
+      "protein": "3g",
+      "carbs": "14g",
+      "fat": "9g",
+      "notes": "100% vegetale e naturalmente senza latticini. Ottima anche servita tiepida o fredda il giorno dopo."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Caponata.html"
+  },
+  {
+    "id": 102,
+    "title": "Peperonata Tradizionale",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "35 min",
+    "servings": 4,
+    "ingredients": [
+      "800g Peperoni misti (rossi e gialli)",
+      "300g Pomodori maturi (o polpa)",
+      "200g Cipolle dorate",
+      "30ml Olio extravergine d'oliva",
+      "1 Spicchio d'aglio",
+      "Basilico fresco q.b.",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Lava e monda i peperoni rimuovendo semi e filamenti interni, poi tagliali a listarelle di circa 2 cm.",
+      "Affetta le cipolle sottilmente e falle dorare dolcemente in una casseruola ampia con l'olio EVO e lo spicchio d'aglio.",
+      "Aggiungi i peperoni, alza leggermente la fiamma e falli saltare per 5 minuti mescolando spesso.",
+      "Unisci i pomodori a tocchetti, regola di sale e pepe e abbassa la fiamma.",
+      "Copri con il coperchio e lascia cuocere a fuoco dolce per 25-30 minuti, finché i peperoni risulteranno teneri e il sugo ristretto.",
+      "Profuma con basilico fresco prima di servire."
+    ],
+    "nutrition": {
+      "calories": "135 kcal",
+      "protein": "2.5g",
+      "carbs": "12g",
+      "fat": "7g",
+      "notes": "Ricchissima di vitamina C e antiossidanti, completamente priva di derivati del latte."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricetta/ricetta-peperonata/"
+  },
+  {
+    "id": 103,
+    "title": "Zucchine Trifolate alla Menta",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "12 min",
+    "servings": 4,
+    "ingredients": [
+      "700g Zucchine fresche",
+      "25ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "Foglioline di menta fresca q.b.",
+      "Sale e pepe nero q.b."
+    ],
+    "steps": [
+      "Lava le zucchine, spuntale e tagliale a rondelle sottili o a mezzaluna regolari.",
+      "In una padella antiaderente larga, fai scaldare l'olio EVO con gli spicchi d'aglio schiacciati.",
+      "Versa le zucchine in padella e cuoci a fiamma medio-alta per 10-12 minuti, mescolando delicatamente per mantenerle intatte e leggermente dorate.",
+      "A fine cottura sala, pepa e cospargi con abbondante menta fresca tritata.",
+      "Rimuovi l'aglio e servi calde o a temperatura ambiente."
+    ],
+    "nutrition": {
+      "calories": "90 kcal",
+      "protein": "2g",
+      "carbs": "5g",
+      "fat": "6g",
+      "notes": "Contorno leggerissimo, idratante e veloce da preparare in qualsiasi stagione."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Zucchine-trifolate.html"
+  },
+  {
+    "id": 104,
+    "title": "Patate al Forno Croccanti al Rosmarino",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "40 min",
+    "servings": 4,
+    "ingredients": [
+      "800g Patate a pasta gialla",
+      "35ml Olio extravergine d'oliva",
+      "3 Rametti di rosmarino fresco",
+      "2 Spicchi d'aglio in camicia",
+      "Sale grosso e pepe q.b."
+    ],
+    "steps": [
+      "Pela le patate e tagliale a spicchi o cubi regolari di circa 3 cm.",
+      "Sbollenta le patate in acqua bollente salata per 5 minuti, poi scolale e lasciale asciugare bene nel colapasta scuotendole per sgranarne la superficie.",
+      "Disponi le patate su una teglia rivestita di carta forno senza sovrapporle.",
+      "Condisci con l'olio EVO, il rosmarino tritato, gli spicchi d'aglio schiacciati in camicia, sale e pepe.",
+      "Inforna in forno statico preriscaldato a 200°C per 35-40 minuti, girandole a metà cottura finché saranno croccanti all'esterno e morbide dentro."
+    ],
+    "nutrition": {
+      "calories": "210 kcal",
+      "protein": "4g",
+      "carbs": "35g",
+      "fat": "7g",
+      "notes": "La sbollentatura iniziale garantisce la massima croccantezza senza bisogno di burro."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricetta/patate-al-forno/"
+  },
+  {
+    "id": 105,
+    "title": "Carciofi alla Romana",
+    "category": "Contorno",
+    "prep_time": "20 min",
+    "cook_time": "30 min",
+    "servings": 4,
+    "ingredients": [
+      "8 Carciofi tipo mammole romanesche",
+      "1 Limone (per l'acqua acidulata)",
+      "40ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "Mentuccia fresca (o menta) q.b.",
+      "Prezzemolo fresco tritato",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Pulisci i carciofi eliminando le foglie esterne più dure e la barbetta interna, pelando il gambo, e immergili in acqua e succo di limone.",
+      "Trita finemente aglio, mentuccia, prezzemolo, un pizzico di sale e pepe.",
+      "Allarga delicatamente le foglie dei carciofi e farcisci il cuore con il trito aromatico.",
+      "Disponi i carciofi a testa in giù, ben stretti l'uno all'altro, in una casseruola dai bordi alti.",
+      "Irrora con l'olio EVO e aggiungi acqua fino a raggiungere metà altezza dei carciofi.",
+      "Copri con coperchio e lascia cuocere a fuoco dolce per circa 30 minuti, finché risulteranno teneri infilzandoli con una forchetta."
+    ],
+    "nutrition": {
+      "calories": "140 kcal",
+      "protein": "5g",
+      "carbs": "10g",
+      "fat": "8g",
+      "notes": "Piatto storico della tradizione laziale, depurativo del fegato e totalmente privo di latticini."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Carciofi-alla-Romana.html"
+  },
+  {
+    "id": 106,
+    "title": "Funghi Trifolati al Prezzemolo",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "15 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Funghi misti (champignon e pioppini)",
+      "30ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "1 Ciuffo di prezzemolo fresco",
+      "Sale e pepe nero q.b."
+    ],
+    "steps": [
+      "Pulisci i funghi con un canovaccio umido per rimuovere residui terrosi e tagliali a fette regolari.",
+      "In una padella fai scaldare l'olio EVO con l'aglio intero schiacciato a fiamma dolce.",
+      "Alza la fiamma, aggiungi i funghi e falli rosolare a fuoco vivo per 10-12 minuti finché l'acqua rilasciata evapora completamente.",
+      "Sala, pepa e cospargi con abbondante prezzemolo fresco tritato al momento.",
+      "Mescola bene per un minuto e togli dal fuoco."
+    ],
+    "nutrition": {
+      "calories": "85 kcal",
+      "protein": "3g",
+      "carbs": "4g",
+      "fat": "6g",
+      "notes": "Pochissime calorie e gusto intenso di bosco, senza grassi animali."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Funghi-trifolati.html"
+  },
+  {
+    "id": 107,
+    "title": "Bietola Ripassata all'Aglio e Limone",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "15 min",
+    "servings": 4,
+    "ingredients": [
+      "800g Bietole da costa fresche",
+      "25ml Olio extravergine d'oliva",
+      "1 Spicchio d'aglio",
+      "Succo di 1/2 limone fresco",
+      "Peperoncino a piacere",
+      "Sale fino q.b."
+    ],
+    "steps": [
+      "Lava accuratamente la bietola separando le coste bianche dalle foglie verdi e tagliale a pezzi.",
+      "Lessa prima le coste in acqua bollente salata per 5 minuti, poi unisci le foglie e cuoci per altri 3 minuti. Scola e strizza bene.",
+      "In una padella scalda l'olio EVO con l'aglio e un pizzico di peperoncino.",
+      "Aggiungi la bietola sbollentata e ripassala a fuoco vivo per 5-7 minuti mescolando.",
+      "Prima di servire, spegni il fuoco e condisci con qualche goccia di succo di limone fresco."
+    ],
+    "nutrition": {
+      "calories": "80 kcal",
+      "protein": "3.5g",
+      "carbs": "4g",
+      "fat": "5g",
+      "notes": "Ricchissima di ferro, magnesio e fibre dolci per il benessere intestinale."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricerca.html?q=bietola+ripassata"
+  },
+  {
+    "id": 108,
+    "title": "Finocchi Gratinati alle Erbe Aromatiche",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "25 min",
+    "servings": 4,
+    "ingredients": [
+      "4 Finocchi grandi",
+      "40g Pangrattato integrale",
+      "30ml Olio extravergine d'oliva",
+      "Timo fresco e origano q.b.",
+      "Scorza grattugiata di 1 limone",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Lava i finocchi, elimina i gambi e tagliali a fette spesse circa 1 cm.",
+      "Sbollenta le fette in acqua salata per 5 minuti, quindi scolale con delicatezza.",
+      "In una ciotolina mescola il pangrattato con timo, origano, scorza di limone, sale e un filo d'olio EVO.",
+      "Ungi una pirofila da forno e disponi i finocchi a strati leggermente sovrapposti.",
+      "Cospargi la superficie con la panatura aromatica e rifinisci con un filo d'olio EVO.",
+      "Inforna a 190°C per 20 minuti, accendendo il grill negli ultimi 3 minuti per una crosticina dorata."
+    ],
+    "nutrition": {
+      "calories": "110 kcal",
+      "protein": "3g",
+      "carbs": "14g",
+      "fat": "6g",
+      "notes": "Gratinatura croccante e dorata senza formaggi o burro, altamente digestiva."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricerca.html?q=finocchi+gratinati"
+  },
+  {
+    "id": 109,
+    "title": "Zucca al Forno al Timo e Paprika",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "30 min",
+    "servings": 4,
+    "ingredients": [
+      "700g Zucca Delica o Butternut",
+      "25ml Olio extravergine d'oliva",
+      "1 Cucchiaino di paprika dolce",
+      "Timo fresco q.b.",
+      "1 Spicchio d'aglio schiacciato",
+      "Sale fino e pepe q.b."
+    ],
+    "steps": [
+      "Elimina i semi dalla zucca e tagliala a fette o mezzelune di spessore uniforme (circa 1,5 cm).",
+      "Disponi le fette su una teglia foderata di carta forno.",
+      "Emulsiona l'olio EVO con la paprika, il timo sfogliato, sale, pepe e aglio schiacciato.",
+      "Spennella uniformemente la superficie della zucca con l'emulsione speziata.",
+      "Inforna a 200°C per circa 25-30 minuti, finché la zucca sarà tenera e ben caramellata ai bordi."
+    ],
+    "nutrition": {
+      "calories": "105 kcal",
+      "protein": "2g",
+      "carbs": "13g",
+      "fat": "5g",
+      "notes": "Sapore dolce e speziato, fonte eccellente di beta-carotene."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Zucca-al-forno.html"
+  },
+  {
+    "id": 110,
+    "title": "Spinaci Saltati all'Olio EVO e Pinoli Tostati",
+    "category": "Contorno",
+    "prep_time": "5 min",
+    "cook_time": "8 min",
+    "servings": 4,
+    "ingredients": [
+      "700g Spinaci freschi novelli",
+      "30g Pinoli tostati",
+      "25ml Olio extravergine d'oliva",
+      "1 Spicchio d'aglio",
+      "Noce moscata appena grattugiata",
+      "Sale fino q.b."
+    ],
+    "steps": [
+      "In un padellino a parte tosta i pinoli a secco per 2 minuti finché sprigionano profumo dorato.",
+      "In una padella capiente rosola lo spicchio d'aglio nell'olio EVO.",
+      "Aggiungi gli spinaci freschi (a più riprese se necessario) e copri per 2 minuti affinché appassiscano dolcemente.",
+      "Scopri la padella, sala, spolvera con un pizzico di noce moscata e fai saltare a fiamma viva per 3 minuti per asciugare l'acqua residua.",
+      "Unisci i pinoli tostati e servi immediatamente."
+    ],
+    "nutrition": {
+      "calories": "115 kcal",
+      "protein": "4g",
+      "carbs": "3g",
+      "fat": "9g",
+      "notes": "Classico contorno nutriente, ricchissimo di antiossidanti, acido folico e grassi buoni."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricetta/spinaci-in-padella/"
+  },
+  {
+    "id": 111,
+    "title": "Melanzane a Funghetto",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "20 min",
+    "servings": 4,
+    "ingredients": [
+      "700g Melanzane lunghe napoletane",
+      "300g Pomodori datterini maturi",
+      "30ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "Abbondante basilico fresco",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Lava e asciuga le melanzane, quindi tagliale a cubetti di circa 2 cm.",
+      "Scalda l'olio EVO in una padella larga con l'aglio schiacciato.",
+      "Aggiungi i cubetti di melanzana e falli rosolare a fuoco vivo per 10 minuti girandoli spesso finché sono ben dorati.",
+      "Aggiungi i pomodorini tagliati a metà, regola di sale e continua la cottura a fuoco medio per altri 8-10 minuti.",
+      "Spegni il fuoco, aggiungi foglie di basilico spezzettate a mano e lascia intiepidire prima di servire."
+    ],
+    "nutrition": {
+      "calories": "130 kcal",
+      "protein": "2.5g",
+      "carbs": "10g",
+      "fat": "8g",
+      "notes": "Contorno tradizionale campano cotto direttamente in padella senza frittura pesante."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Melanzane-a-funghetto.html"
+  },
+  {
+    "id": 112,
+    "title": "Fagiolini al Pomodoro e Basilico",
+    "category": "Contorno",
+    "prep_time": "15 min",
+    "cook_time": "20 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Fagiolini teneri",
+      "300g Polpa di pomodoro (o pelati)",
+      "1/2 Cipolla bianca",
+      "25ml Olio extravergine d'oliva",
+      "Basilico fresco q.b.",
+      "Sale e pepe q.b."
+    ],
+    "steps": [
+      "Spunta i fagiolini e lavali accuratamente sotto acqua corrente.",
+      "Sbollenta i fagiolini in acqua salata bollente per 6 minuti, poi scolali al dente.",
+      "In una casseruola fai appassire la cipolla tritata nell'olio EVO per 3 minuti.",
+      "Unisci la polpa di pomodoro, sala e lascia sobbollire per 5 minuti.",
+      "Aggiungi i fagiolini sbollentati, copri e lascia insaporire a fiamma bassa per altri 10 minuti.",
+      "Completa con foglie di basilico fresco profumato."
+    ],
+    "nutrition": {
+      "calories": "95 kcal",
+      "protein": "3g",
+      "carbs": "8g",
+      "fat": "5g",
+      "notes": "Semplice, ricco di fibre e acqua, amato da tutta la famiglia."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricerca.html?q=fagiolini+al+pomodoro"
+  },
+  {
+    "id": 113,
+    "title": "Cipolle Rosse Caramellate all'Aceto Balsamico",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "25 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Cipolle rosse di Tropea",
+      "30ml Aceto balsamico di Modena",
+      "20ml Olio extravergine d'oliva",
+      "15g Zucchero di canna",
+      "Sale e pepe q.b.",
+      "1 Rametto di rosmarino"
+    ],
+    "steps": [
+      "Sbuccia le cipolle rosse e tagliale a spicchi regolari o ad anelli spessi.",
+      "Scalda l'olio EVO in una padella antiaderente e aggiungi le cipolle con il rametto di rosmarino.",
+      "Fai stufare dolcemente con coperchio per 10 minuti mescolando di tanto in tanto.",
+      "Spolvera con lo zucchero di canna, versa l'aceto balsamico e alza la fiamma per farlo sfumare e caramellare.",
+      "Abbassa la fiamma, togli il coperchio e prosegui la cottura per altri 10-12 minuti finché le cipolle risultano lucide e morbide."
+    ],
+    "nutrition": {
+      "calories": "125 kcal",
+      "protein": "1.8g",
+      "carbs": "16g",
+      "fat": "5g",
+      "notes": "Gusto agrodolce irresistibile che si abbina perfettamente a carni e legumi."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://www.giallozafferano.it/ricerca-ricette/Cipolle-caramellate/"
+  },
+  {
+    "id": 114,
+    "title": "Cavolfiore Arrosto alla Curcuma e Pepe Nero",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "25 min",
+    "servings": 4,
+    "ingredients": [
+      "700g Cavolfiore bianco",
+      "30ml Olio extravergine d'oliva",
+      "1 Cucchiaino di curcuma in polvere",
+      "1/2 Cucchiaino di cumino (facoltativo)",
+      "Prezzemolo fresco tritato",
+      "Sale fino e pepe nero macinato"
+    ],
+    "steps": [
+      "Pulisci il cavolfiore ricavandone cimette di dimensioni medie e uniformi.",
+      "In una capiente ciotola mescola l'olio EVO con la curcuma, il cumino, sale e una generosa macinata di pepe nero.",
+      "Versa le cimette di cavolfiore nella ciotola e mescola bene con le mani per ricoprirle in modo omogeneo.",
+      "Distribuisci il cavolfiore su una leccarda da forno rivestita di carta forno in un unico strato.",
+      "Inforna a 200°C per 25 minuti finché i bordi saranno dorati e croccanti. Guarnisci con prezzemolo fresco."
+    ],
+    "nutrition": {
+      "calories": "95 kcal",
+      "protein": "3.2g",
+      "carbs": "7g",
+      "fat": "6g",
+      "notes": "Potente combinazione antinfiammatoria di curcuma e pepe nero, dorato e appetitoso."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricerca.html?q=cavolfiore+al+forno"
+  },
+  {
+    "id": 115,
+    "title": "Broccoletti Saltati con Aglio e Peperoncino",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "12 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Broccoletti o cime di rapa tenere",
+      "25ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "1 Peperoncino fresco o secco",
+      "Sale fino q.b."
+    ],
+    "steps": [
+      "Lava i broccoletti e tagliali a cimette mantenendo anche i gambi più teneri.",
+      "Sbollenta le cimette in abbondante acqua bollente salata per appena 4 minuti, poi scolale raffreddandole subito con acqua fredda per fissare il colore verde brillante.",
+      "In una padella fai soffriggere l'aglio a fettine e il peperoncino nell'olio EVO.",
+      "Aggiungi i broccoletti e saltali a fiamma viva per 6-8 minuti affinché si insaporiscano bene.",
+      "Servi caldi come saporito contorno rustico."
+    ],
+    "nutrition": {
+      "calories": "85 kcal",
+      "protein": "4g",
+      "carbs": "5g",
+      "fat": "5.5g",
+      "notes": "Ricco di sulforafano e antiossidanti, sapore deciso e corroborante."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Broccoli-affogati.html"
+  },
+  {
+    "id": 116,
+    "title": "Insalata di Finocchi, Arance e Olive Nere",
+    "category": "Contorno",
+    "prep_time": "12 min",
+    "cook_time": "0 min",
+    "servings": 4,
+    "ingredients": [
+      "3 Finocchi croccanti",
+      "2 Arance Tarocco o bionde non trattate",
+      "60g Olive nere di Gaeta o taggiasche",
+      "25ml Olio extravergine d'oliva fruttato",
+      "Qualche foglia di prezzemolo o timo",
+      "Sale fino e pepe nero a mulinello"
+    ],
+    "steps": [
+      "Monda i finocchi eliminando la parte esterna e tagliali a fettine finissime (ideale l'uso della mandolina).",
+      "Immergi i finocchi affettati in acqua ghiacciata per 10 minuti per renderli extra croccanti, poi asciugali.",
+      "Pela le arance a vivo eliminando tutta la parte bianca e tagliale a spicchi o rondelle.",
+      "In un'insalatiera unisci i finocchi, i tocchetti d'arancia e le olive nere denocciolate.",
+      "Condisci con sale, pepe nero macinato fresco e olio extravergine d'oliva emulsionato, mescola delicatamente e servi."
+    ],
+    "nutrition": {
+      "calories": "110 kcal",
+      "protein": "2g",
+      "carbs": "11g",
+      "fat": "6.5g",
+      "notes": "Contorno fresco a crudo tipico siciliano, digestivo e rinfrescante."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Insalata-di-finocchi-e-arance.html"
+  },
+  {
+    "id": 117,
+    "title": "Pomodori Confit al Forno con Origano",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "45 min",
+    "servings": 4,
+    "ingredients": [
+      "600g Pomodorini datterini o ciliegino",
+      "25ml Olio extravergine d'oliva",
+      "1 Cucchiaino di zucchero di canna",
+      "Origano secco profumato q.b.",
+      "1 Spicchio d'aglio tritato fine",
+      "Scorza di limone grattugiata",
+      "Sale fino e pepe"
+    ],
+    "steps": [
+      "Lava e asciuga i pomodorini, poi tagliali a metà per il verso della lunghezza.",
+      "Disponi i pomodori su una teglia con carta forno con la parte tagliata rivolta verso l'alto.",
+      "Spolvera su ciascun pomodorino lo zucchero, il sale, il pepe, l'origano e la scorza di limone.",
+      "Irrora generosamente con l'olio EVO.",
+      "Cuoci in forno a 140°C per circa 45 minuti finché risulteranno appassiti, caramellati e dolcissimi."
+    ],
+    "nutrition": {
+      "calories": "90 kcal",
+      "protein": "1.5g",
+      "carbs": "8g",
+      "fat": "6g",
+      "notes": "Concentrato puro di dolcezza mediterranea, 100% vegetale."
+    },
+    "source": "Il Cucchiaio d'Argento",
+    "source_url": "https://www.cucchiaio.it/ricetta/pomodorini-confit/"
+  },
+  {
+    "id": 118,
+    "title": "Cicoria Ripassata alla Romana",
+    "category": "Contorno",
+    "prep_time": "10 min",
+    "cook_time": "15 min",
+    "servings": 4,
+    "ingredients": [
+      "800g Cicoria da campo fresca",
+      "30ml Olio extravergine d'oliva",
+      "2 Spicchi d'aglio",
+      "1 Peperoncino secco piccante",
+      "Sale grosso per l'acqua e fino"
+    ],
+    "steps": [
+      "Pulisci la cicoria eliminando la base del cespo e le foglie rovinate, lavandola abbondantemente.",
+      "Lessa la cicoria in abbondante acqua bollente salata per 8-10 minuti.",
+      "Scolala e strizzala con cura con le mani per eliminare l'acqua in eccesso.",
+      "In una padella ampia scalda l'olio EVO con gli spicchi d'aglio schiacciati e il peperoncino sbriciolato.",
+      "Aggiungi la cicoria strizzata, regola di sale e falla ripassare a fiamma viva per 6-8 minuti facendola ben insaporire.",
+      "Servi caldissima."
+    ],
+    "nutrition": {
+      "calories": "95 kcal",
+      "protein": "3g",
+      "carbs": "3.5g",
+      "fat": "7g",
+      "notes": "Amarognola, tonica e depurativa, simbolo assoluto della cucina casalinga laziale."
+    },
+    "source": "GialloZafferano",
+    "source_url": "https://ricette.giallozafferano.it/Cicoria-in-padella.html"
   }
 ]

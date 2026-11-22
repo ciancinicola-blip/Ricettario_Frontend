@@ -3,7 +3,7 @@
    Strategia: Cache-first per assets statici, Network-first per recipes.json
    ========================================================================== */
 
-const CACHE_NAME = 'cianciMenu-v1';
+const CACHE_NAME = 'cianciMenu-v2';
 const STATIC_ASSETS = [
   './',
   './index.html',
