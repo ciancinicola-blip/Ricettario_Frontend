@@ -385,9 +385,14 @@ function renderRecipeBody() {
                 <div><span class="block text-[11px] text-slate-400 uppercase">Porzioni</span><span class="text-slate-700">${currentServings} pers.</span></div>
                 <div>
                     <span class="block text-[11px] text-slate-400 uppercase">Fonte</span>
-                    <a href="${esc(r.source_url)}" target="_blank" rel="noopener noreferrer" class="text-teal-600 underline hover:text-teal-800 font-bold inline-flex items-center gap-1">
-                        ${esc(r.source)} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                    </a>
+                    ${(() => {
+                        const isSearch = r.source_url.includes('ricerca') || r.source_url.includes('search') || r.source_url.includes('?s=');
+                        const icon = isSearch ? 'fa-magnifying-glass' : 'fa-arrow-up-right-from-square';
+                        const label = isSearch ? `${esc(r.source)} (Cerca)` : esc(r.source);
+                        return `<a href="${esc(r.source_url)}" target="_blank" rel="noopener noreferrer" title="${isSearch ? 'Cerca ricetta su ' + esc(r.source) : 'Apri ricetta originale'}" class="text-teal-600 underline hover:text-teal-800 font-bold inline-flex items-center gap-1">
+                            ${label} <i class="fa-solid ${icon} text-[10px]"></i>
+                        </a>`;
+                    })()}
                 </div>
             </div>
 
@@ -504,9 +509,14 @@ function renderCookbook() {
                 <button data-action="open-recipe" data-id="${r.id}" class="px-3.5 py-1.5 bg-teal-500 hover:bg-teal-600 text-white font-bold rounded-xl text-xs transition">
                     Vedi preparazione
                 </button>
-                <a href="${esc(r.source_url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-teal-600 hover:underline flex items-center gap-1">
-                    ${esc(r.source)} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
+                ${(() => {
+                    const isSearch = r.source_url.includes('ricerca') || r.source_url.includes('search') || r.source_url.includes('?s=');
+                    const icon = isSearch ? 'fa-magnifying-glass' : 'fa-arrow-up-right-from-square';
+                    const label = isSearch ? `${esc(r.source)} (Cerca)` : esc(r.source);
+                    return `<a href="${esc(r.source_url)}" target="_blank" rel="noopener noreferrer" title="${isSearch ? 'Cerca ricetta su ' + esc(r.source) : 'Apri ricetta originale'}" class="text-xs font-bold text-teal-600 hover:underline flex items-center gap-1">
+                        ${label} <i class="fa-solid ${icon} text-[10px]"></i>
+                    </a>`;
+                })()}
             </div>
         </article>`).join('');
 }
