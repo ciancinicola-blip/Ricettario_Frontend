@@ -1,98 +1,98 @@
 /* ==========================================================================
-   COLORI: palette verde salvia + carta
-   I colori sono variabili RGB. Il tema scuro è una seconda serie di valori,
-   ottenuta invertendo la scala dei grigi e dei verdi.
+   COLORI VIVACI: Palette Solare & Fresca (Emerald, Tangerine, Slate pulito)
+   Colori vivaci e luminosi dedicati alla cucina di famiglia.
+   Default luminoso e solare; tema scuro rifinito e brillante (non scuro/fango).
    ========================================================================== */
 
 :root {
-    --teal-50: 243 246 241;
-    --teal-100: 228 235 224;
-    --teal-200: 201 215 196;
-    --teal-300: 167 189 160;
-    --teal-400: 134 163 127;
-    --teal-500: 107 143 102;
-    --teal-600: 85 116 83;
-    --teal-700: 68 93 67;
-    --teal-800: 54 73 47;
-    --teal-900: 42 58 38;
-    --amber-50: 251 245 236;
-    --amber-100: 245 232 211;
-    --amber-200: 235 210 170;
-    --amber-300: 221 181 126;
-    --amber-400: 201 149 88;
-    --amber-500: 182 122 62;
-    --amber-600: 150 97 47;
-    --amber-700: 118 74 38;
-    --amber-800: 90 58 32;
-    --amber-900: 66 41 26;
-    --slate-50: 251 248 242;
-    --slate-100: 243 238 228;
-    --slate-200: 230 223 208;
-    --slate-300: 211 202 183;
-    --slate-400: 168 159 140;
-    --slate-500: 133 125 107;
-    --slate-600: 100 93 78;
-    --slate-700: 76 71 57;
-    --slate-800: 54 50 42;
-    --slate-900: 36 33 28;
-    --rose-50: 251 237 235;
-    --rose-100: 246 217 213;
-    --rose-200: 239 197 191;
-    --rose-300: 230 167 158;
-    --rose-400: 218 133 121;
-    --rose-500: 200 106 92;
-    --rose-600: 160 58 46;
-    --rose-700: 126 45 36;
-    --rose-800: 92 33 27;
-    --rose-900: 61 22 19;
-    --white: 255 253 248;
+    /* Emerald / Verde Fresco & Vitale */
+    --teal-50: 236 253 245;
+    --teal-100: 209 250 229;
+    --teal-200: 167 243 208;
+    --teal-300: 110 231 183;
+    --teal-400: 52 211 153;
+    --teal-500: 16 185 129;
+    --teal-600: 5 150 105;
+    --teal-700: 4 120 87;
+    --teal-800: 6 95 70;
+    --teal-900: 6 78 59;
+
+    /* Arancio Mandarino & Zucca Caldo e Solare */
+    --amber-50: 255 247 237;
+    --amber-100: 255 237 213;
+    --amber-200: 254 215 170;
+    --amber-300: 253 186 116;
+    --amber-400: 251 146 60;
+    --amber-500: 249 115 22;
+    --amber-600: 234 88 12;
+    --amber-700: 194 65 12;
+    --amber-800: 154 52 18;
+    --amber-900: 124 45 18;
+
+    /* Neutri Moderni, Puliti e Luminosi (mai marroni o cupi) */
+    --slate-50: 248 250 252;
+    --slate-100: 241 245 249;
+    --slate-200: 226 232 240;
+    --slate-300: 203 213 225;
+    --slate-400: 148 163 184;
+    --slate-500: 100 116 139;
+    --slate-600: 71 85 105;
+    --slate-700: 51 65 85;
+    --slate-800: 30 41 59;
+    --slate-900: 15 23 42;
+
+    /* Rosso Fragola / Pomodoro Fresco */
+    --rose-50: 255 241 242;
+    --rose-100: 255 228 230;
+    --rose-200: 254 205 211;
+    --rose-300: 253 164 175;
+    --rose-400: 251 113 133;
+    --rose-500: 244 63 94;
+    --rose-600: 225 29 72;
+    --rose-700: 190 18 60;
+    --rose-800: 159 18 57;
+    --rose-900: 136 19 55;
+
+    --white: 255 255 255;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        color-scheme: dark;
-        --teal-50: 42 58 38;
-        --teal-100: 54 73 47;
-        --teal-200: 68 93 67;
-        --teal-300: 85 116 83;
-        --teal-400: 107 143 102;
-        --teal-500: 134 163 127;
-        --teal-600: 167 189 160;
-        --teal-700: 201 215 196;
-        --teal-800: 228 235 224;
-        --teal-900: 243 246 241;
-        --amber-50: 66 41 26;
-        --amber-100: 90 58 32;
-        --amber-200: 118 74 38;
-        --amber-300: 150 97 47;
-        --amber-400: 182 122 62;
-        --amber-500: 201 149 88;
-        --amber-600: 221 181 126;
-        --amber-700: 235 210 170;
-        --amber-800: 245 232 211;
-        --amber-900: 251 245 236;
-        --slate-50: 36 33 28;
-        --slate-100: 54 50 42;
-        --slate-200: 76 71 57;
-        --slate-300: 100 93 78;
-        --slate-400: 133 125 107;
-        --slate-500: 168 159 140;
-        --slate-600: 211 202 183;
-        --slate-700: 230 223 208;
-        --slate-800: 243 238 228;
-        --slate-900: 251 248 242;
-        --rose-50: 61 22 19;
-        --rose-100: 92 33 27;
-        --rose-200: 126 45 36;
-        --rose-300: 160 58 46;
-        --rose-400: 200 106 92;
-        --rose-500: 218 133 121;
-        --rose-600: 230 167 158;
-        --rose-700: 239 197 191;
-        --rose-800: 246 217 213;
-        --rose-900: 251 237 235;
-        --white: 38 36 32;
-    }
+/* Modalità scura attivabile esplicitamente (o via preferenza ma con colori vivi) */
+html.dark, body.dark-mode {
+    color-scheme: dark;
+    --teal-50: 6 78 59;
+    --teal-100: 6 95 70;
+    --teal-200: 4 120 87;
+    --teal-300: 5 150 105;
+    --teal-400: 16 185 129;
+    --teal-500: 52 211 153;
+    --teal-600: 110 231 183;
+    --teal-700: 167 243 208;
+    --teal-800: 209 250 229;
+    --teal-900: 236 253 245;
+
+    --amber-50: 124 45 18;
+    --amber-100: 154 52 18;
+    --amber-200: 194 65 12;
+    --amber-300: 234 88 12;
+    --amber-400: 249 115 22;
+    --amber-500: 251 146 60;
+    --amber-600: 253 186 116;
+    --amber-700: 254 215 170;
+    --amber-800: 255 237 213;
+    --amber-900: 255 247 237;
+
+    --slate-50: 15 23 42;
+    --slate-100: 30 41 59;
+    --slate-200: 51 65 85;
+    --slate-300: 71 85 105;
+    --slate-400: 100 116 139;
+    --slate-500: 148 163 184;
+    --slate-600: 203 213 225;
+    --slate-700: 226 232 240;
+    --slate-800: 241 245 249;
+    --slate-900: 248 250 252;
+
+    --white: 30 41 59;
 }
 
 /* ==========================================================================
