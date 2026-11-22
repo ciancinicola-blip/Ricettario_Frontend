@@ -712,12 +712,17 @@ async function initApp() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         recipesData = await res.json();
     } catch (err) {
-        console.error('Impossibile caricare recipes.json:', err);
-        document.getElementById('weekContent').innerHTML = `
-            <div class="bg-rose-50 border border-rose-200 text-rose-700 rounded-2xl p-5 text-sm font-semibold">
-                Non riesco a caricare recipes.json. Verifica che il file sia nella stessa cartella di index.html.
-            </div>`;
-        return;
+        if (typeof window !== 'undefined' && window.RECIPES_DATA && window.RECIPES_DATA.length) {
+            console.warn('Fetch di recipes.json non riuscito (es. protocollo file://), uso fallback locale recipes-data.js:', err);
+            recipesData = window.RECIPES_DATA;
+        } else {
+            console.error('Impossibile caricare recipes.json:', err);
+            document.getElementById('weekContent').innerHTML = `
+                <div class="bg-rose-50 border border-rose-200 text-rose-700 rounded-2xl p-5 text-sm font-semibold">
+                    Non riesco a caricare recipes.json. Verifica che il file sia nella stessa cartella di index.html.
+                </div>`;
+            return;
+        }
     }
     document.getElementById('cookbookCount').textContent = recipesData.length;
     renderApp();

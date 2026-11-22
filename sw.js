@@ -9,6 +9,7 @@ const STATIC_ASSETS = [
   './index.html',
   './app.js',
   './style.css',
+  './recipes-data.js',
   './recipes.json',
   './manifest.json',
   './icons/icon-192.png',
